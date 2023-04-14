@@ -1,12 +1,21 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="PalEats.Views.CategoryPage">
+             x:Class="PalEats.Views.CategoryPage" NavigationPage.HasNavigationBar="False"               
+             xmlns:components="clr-namespace:PalEats.Views" >
+  
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+        <StackLayout BackgroundColor="{StaticResource backgroundColor }">
+            <StackLayout>
+                <StackLayout  HeightRequest="119" WidthRequest="360">
+                    <Frame  BackgroundColor="{StaticResource MainHeadandNavbarColor}" Padding="10" CornerRadius="7" WidthRequest="400" HeightRequest="80">
+                        <Label Text="PalEats" Padding="15" HorizontalOptions="StartAndExpand" FontSize="30"  TextColor="{StaticResource MainTextColor}" />
+                    </Frame>
+                </StackLayout>
+            </StackLayout>
+            <StackLayout  VerticalOptions="EndAndExpand">
+                <components:NavigationComponent/>
+            </StackLayout>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

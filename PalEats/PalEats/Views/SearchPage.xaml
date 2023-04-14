@@ -1,12 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="PalEats.Views.SearchPage">
+             xmlns:components="clr-namespace:PalEats.Views"
+             x:Class="PalEats.Views.SearchPage"   NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+        <StackLayout BackgroundColor="{StaticResource backgroundColor}">
+            <ImageButton  Source="arrow.png" WidthRequest="10" HeightRequest="24" Margin="25" BackgroundColor="{StaticResource backgroundColor}" HorizontalOptions="StartAndExpand" Clicked="BackButton_Clicked" />
+            <Label Text="searchPage" BackgroundColor="{StaticResource backgroundColor}" HorizontalOptions="Center"  FontSize="40"  TextColor="{StaticResource MainTextColor}" Margin="30" />
+            <StackLayout  VerticalOptions="EndAndExpand">
+                <components:NavigationComponent/>
+            </StackLayout>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

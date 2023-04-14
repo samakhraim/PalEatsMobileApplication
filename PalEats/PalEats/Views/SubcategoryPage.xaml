@@ -1,12 +1,25 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="PalEats.Views.SubcategoryPage">
+              xmlns:components="clr-namespace:PalEats.Views"
+             x:Class="PalEats.Views.SubcategoryPage" NavigationPage.HasNavigationBar="False" >
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+        <StackLayout  BackgroundColor="{StaticResource backgroundColor}">
+            <StackLayout HeightRequest="119" WidthRequest="360">
+                <Frame BackgroundColor="{StaticResource MainHeadandNavbarColor}" Padding="10" CornerRadius="7" HorizontalOptions="Start" VerticalOptions="Start" WidthRequest="400" HeightRequest="80">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <ImageButton Grid.Column="0" Source="arrow.png" WidthRequest="10" HeightRequest="24" BackgroundColor="{StaticResource MainHeadandNavbarColor}" HorizontalOptions="StartAndExpand" Clicked="BackButton_Clicked" />
+                        <Label Grid.Column="1" Text="Sweet" HorizontalOptions="StartAndExpand" Padding="20" FontSize="30"  TextColor="{StaticResource MainTextColor}" />
+                    </Grid>
+                </Frame>
+            </StackLayout>
+            <StackLayout  VerticalOptions="EndAndExpand">
+                <components:NavigationComponent/>
+            </StackLayout>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -16,5 +16,10 @@ namespace PalEats.Views
         {
             InitializeComponent();
         }
+   
+        private async void BackButton_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PopAsync();
+        }
     }
 }
