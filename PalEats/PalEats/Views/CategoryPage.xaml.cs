@@ -13,7 +13,17 @@ namespace PalEats.Views
         {
             InitializeComponent();
         }
-      
+        private async void OnCollectionViewSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var collectionView = sender as CollectionView;
+            var selectedCategory = e.CurrentSelection.FirstOrDefault() as Category;
+
+            if (selectedCategory != null)
+            {
+                collectionView.SelectedItem = null;
+                await Navigation.PushAsync(new SubcategoryPage(selectedCategory.CategoryId));
+            }
+        }
         private async void BackButton_Clicked(object sender, EventArgs e)
         {
             await Navigation.PopAsync();
