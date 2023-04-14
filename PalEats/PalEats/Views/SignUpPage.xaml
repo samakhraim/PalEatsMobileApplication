@@ -1,74 +1,124 @@
-﻿<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-          xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-          x:Class="PalEats.Views.SignUpPage"
-          xmlns:b="clr-namespace:PalEats.ViewModels"
-          BackgroundColor="{StaticResource backgroundColor}"
-            >
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PalEats.Views.SignUpPage"
+             xmlns:b="clr-namespace:PalEats.ViewModels"
+             BackgroundColor="{StaticResource backgroundColor}">
+
 
     <ContentPage.BindingContext>
         <b:SignUpPageViewModel />
     </ContentPage.BindingContext>
 
-    <ContentPage.Content>
-        <StackLayout Padding="16,32,16,32" 
-                 VerticalOptions="FillAndExpand"
-                 Spacing="20">
+    <Grid Margin="16,32,16,32" VerticalOptions="FillAndExpand">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
 
-            <Label Text="Sign-Up" 
-               FontSize="48" 
-               HorizontalOptions="Center" 
-               TextColor="{StaticResource MainTextColor}" />
+        <Label Text="Sign-Up"
+               FontSize="48"
+               HorizontalOptions="Center"
+               TextColor="{StaticResource MainTextColor}"
+               FontFamily="Lato"
+               Grid.Row="0" />
 
-            <Frame CornerRadius="20"
-                BackgroundColor="#EFDECF"
+        <Frame CornerRadius="20"
+               BackgroundColor="{StaticResource FrameBackgroundColor}"
                Padding="20,5" 
                Margin="30,10"
-               HasShadow="True" >
-                <Entry Text="{Binding SignUpModel.Email}" 
+               HasShadow="True"
+               Grid.Row="1">
+            <Entry Text="{Binding SignUpModel.Email}" 
                    Placeholder="Email" 
-                   Margin="0" 
-                   FontSize="Small"
-                   HorizontalOptions="FillAndExpand">
+                   FontSize="Small" />
+        </Frame>
 
-                </Entry>
-            </Frame>
-
-            <Frame CornerRadius="20"        
-              BackgroundColor="#EFDECF"
-               Padding="20,5"
+        <Frame CornerRadius="20"        
+               BackgroundColor="{StaticResource FrameBackgroundColor}"
+               Padding="20,5" 
                Margin="30,10"
-               HasShadow="True">
-                <Entry Text="{Binding SignUpModel.Password}" 
+               HasShadow="True"
+               Grid.Row="2">
+            <Entry Text="{Binding SignUpModel.Password}" 
                    Placeholder="Password" 
                    IsPassword="True" 
-                   Margin="0" 
-                   FontSize="Small"
-                   HorizontalOptions="FillAndExpand" />
-            </Frame>
+                   FontSize="Small" />
+        </Frame>
 
-            <Frame CornerRadius="20"  
-               BackgroundColor="#EFDECF"
+        <Frame CornerRadius="20"  
+               BackgroundColor="{StaticResource FrameBackgroundColor}"
                Padding="20,5" 
-               Margin="30,10"
-               HasShadow="True">
-                <Entry Text="{Binding ConfirmPassword}" 
+               Margin="30,10" 
+               HasShadow="True"
+               Grid.Row="3">
+            <Entry Text="{Binding ConfirmPassword}" 
                    Placeholder="Confirm Password" 
                    FontSize="Small"
-                   IsPassword="True"                    
-                   Margin="0" 
-                   HorizontalOptions="FillAndExpand" />
-            </Frame>
+                   IsPassword="True" />
+        </Frame>
 
-            <Button Text="Sign Up" 
-                 BackgroundColor="#EFDECF"
+        <Button Text="Sign Up" 
+                BackgroundColor="{StaticResource FrameBackgroundColor}"
                 TextColor="{StaticResource MainTextColor}"
                 Command="{Binding SignUpButtonClicked}"
                 HorizontalOptions="CenterAndExpand" 
                 CornerRadius="20"
                 FontSize="20"
-                Margin="0,40,0,0" 
-                />
-        </StackLayout>
-    </ContentPage.Content>
+                Margin="0,40,0,20"
+                Grid.Row="4" />
 
+        <Label Text="Or Sign UpUsing"
+            HorizontalOptions="Center"
+            FontSize="20"
+            TextColor="{StaticResource MainTextColor}"
+        FontFamily="Lato"
+            Grid.Row="5" />
+        <StackLayout Orientation="Horizontal"
+                 HorizontalOptions="Center" 
+                 Margin="0,20"
+                 Spacing="20"
+                 Grid.Row="6">
+            <ImageButton Source="gmailicon.png"
+                     HeightRequest="62" 
+                     WidthRequest="80"
+                     Aspect="AspectFill"
+                     Padding="5"
+                     Margin="0"
+                     Command="{Binding GoogleSignInCommand}" />
+
+            <ImageButton Source="guest.png"
+                     HeightRequest="62"
+                     WidthRequest="80"
+                     Aspect="AspectFill"
+                     Clicked="OnGuestButtonClicked"
+                     Padding="5"
+                     Margin="0"
+                     BackgroundColor="Transparent"
+                     CornerRadius="30" />
+        </StackLayout>
+
+        <Label Text="Already have an account? Sign in"
+           HorizontalTextAlignment="Center"
+           FontFamily="Lato"
+           TextColor="{StaticResource MainTextColor}"
+           Grid.Row="7">
+            <Label.FormattedText>
+                <FormattedString>
+                    <Span Text="Already have an account? " />
+                    <Span Text="Sign in" TextDecorations="Underline" TextColor="Blue">
+                        <Span.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnSignInTapped" />
+                        </Span.GestureRecognizers>
+                    </Span>
+                </FormattedString>
+            </Label.FormattedText>
+        </Label>
+    </Grid>
 </ContentPage>

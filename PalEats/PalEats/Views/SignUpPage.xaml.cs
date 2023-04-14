@@ -17,7 +17,14 @@ namespace PalEats.Views
             InitializeComponent();
             NavigationPage.SetHasNavigationBar(this, false);
         }
-       
 
+        private async void OnSignInTapped(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new SignInPage());
+        }
+        private async void OnGuestButtonClicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new CategoryPage());
+        }
     }
 }
