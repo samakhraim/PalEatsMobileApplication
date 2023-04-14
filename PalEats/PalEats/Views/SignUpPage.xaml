@@ -1,12 +1,74 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="PalEats.Views.SignUpPage">
+﻿<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+          xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+          x:Class="PalEats.Views.SignUpPage"
+          xmlns:b="clr-namespace:PalEats.ViewModels"
+          BackgroundColor="{StaticResource backgroundColor}"
+            >
+
+    <ContentPage.BindingContext>
+        <b:SignUpPageViewModel />
+    </ContentPage.BindingContext>
+
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+        <StackLayout Padding="16,32,16,32" 
+                 VerticalOptions="FillAndExpand"
+                 Spacing="20">
+
+            <Label Text="Sign-Up" 
+               FontSize="48" 
+               HorizontalOptions="Center" 
+               TextColor="{StaticResource MainTextColor}" />
+
+            <Frame CornerRadius="20"
+                BackgroundColor="#EFDECF"
+               Padding="20,5" 
+               Margin="30,10"
+               HasShadow="True" >
+                <Entry Text="{Binding SignUpModel.Email}" 
+                   Placeholder="Email" 
+                   Margin="0" 
+                   FontSize="Small"
+                   HorizontalOptions="FillAndExpand">
+
+                </Entry>
+            </Frame>
+
+            <Frame CornerRadius="20"        
+              BackgroundColor="#EFDECF"
+               Padding="20,5"
+               Margin="30,10"
+               HasShadow="True">
+                <Entry Text="{Binding SignUpModel.Password}" 
+                   Placeholder="Password" 
+                   IsPassword="True" 
+                   Margin="0" 
+                   FontSize="Small"
+                   HorizontalOptions="FillAndExpand" />
+            </Frame>
+
+            <Frame CornerRadius="20"  
+               BackgroundColor="#EFDECF"
+               Padding="20,5" 
+               Margin="30,10"
+               HasShadow="True">
+                <Entry Text="{Binding ConfirmPassword}" 
+                   Placeholder="Confirm Password" 
+                   FontSize="Small"
+                   IsPassword="True"                    
+                   Margin="0" 
+                   HorizontalOptions="FillAndExpand" />
+            </Frame>
+
+            <Button Text="Sign Up" 
+                 BackgroundColor="#EFDECF"
+                TextColor="{StaticResource MainTextColor}"
+                Command="{Binding SignUpButtonClicked}"
+                HorizontalOptions="CenterAndExpand" 
+                CornerRadius="20"
+                FontSize="20"
+                Margin="0,40,0,0" 
+                />
         </StackLayout>
     </ContentPage.Content>
+
 </ContentPage>
