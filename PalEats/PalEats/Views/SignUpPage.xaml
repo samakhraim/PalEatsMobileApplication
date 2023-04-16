@@ -7,7 +7,7 @@
 
 
     <ContentPage.BindingContext>
-        <b:SignUpPageViewModel />
+        <b:SignUpPageViewModel/>
     </ContentPage.BindingContext>
 
     <Grid Margin="16,32,16,32" VerticalOptions="FillAndExpand">
