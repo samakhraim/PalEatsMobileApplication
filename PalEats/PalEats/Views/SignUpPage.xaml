@@ -85,13 +85,7 @@
                  Margin="0,20"
                  Spacing="20"
                  Grid.Row="6">
-            <ImageButton Source="gmailicon.png"
-                     HeightRequest="62" 
-                     WidthRequest="80"
-                     Aspect="AspectFill"
-                     Padding="5"
-                     Margin="0"
-                     Command="{Binding GoogleSignInCommand}" />
+          
 
             <ImageButton Source="guest.png"
                      HeightRequest="62"
