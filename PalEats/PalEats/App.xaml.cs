@@ -13,7 +13,11 @@ namespace PalEats
         {
             InitializeComponent();
 
+
+            MainPage = new SignUpPage();
+
             MainPage = new NavigationPage(new CategoryPage());
+
 
             LoadCategoriesAsync();
 
@@ -26,6 +30,12 @@ namespace PalEats
         }
         protected override void OnStart()
         {
+
+            var rootPage = new SignUpPage();
+            var navigationPage = new NavigationPage(rootPage);
+            MainPage = navigationPage;
+
+
         }
         protected override void OnSleep()
         {
