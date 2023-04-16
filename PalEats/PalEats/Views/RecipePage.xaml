@@ -48,7 +48,7 @@
                         <StackLayout>
 
                             <Label  Text="Recipe Description:" Margin="5,15,0,0" FontSize="20" FontAttributes="Bold" TextColor="{StaticResource MainTextColor}"/>
-                            <Label Text="{Binding Recipe.Description}" Margin="10,0,0,0"  FontSize="16" TextColor="{StaticResource MainTextColor}"/>
+                            <Label Text="{Binding Recipe.Description}" Margin="10,0,0,10"  FontSize="16" TextColor="{StaticResource MainTextColor}"/>
                         </StackLayout>
                         <StackLayout>
                             <Grid >
