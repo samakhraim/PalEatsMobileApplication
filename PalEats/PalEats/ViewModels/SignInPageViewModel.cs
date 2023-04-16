@@ -1,10 +1,91 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
+using System.Windows.Input;
 
-namespace PalEats.ViewModels
+using PalEats.Models;
+using PalEats.Services;
+using PalEats.Views;
+using Xamarin.Forms;
+
+namespace PalEats.ViewModel
 {
-    internal class SignInPageViewModel
+    public class SignInViewModel : INotifyPropertyChanged
     {
+        private SignInServices signInService;
+
+        public SignInViewModel()
+        {
+            SignInCommand = new Command(async () => await SignInAsync());
+            OnSignUpTappedCommand = new Command(async () => await Application.Current.MainPage.Navigation.PushAsync(new SignUpPage()));
+            signInService = new SignInServices();
+        }
+
+        private SignUpModel signInModel = new SignUpModel();
+        public SignUpModel SignInModel
+        {
+            get { return signInModel; }
+            set
+            {
+                signInModel = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public ICommand SignInCommand { get; private set; }
+
+        public ICommand OnSignUpTappedCommand { get; private set; }
+
+        private async Task SignInAsync()
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(SignInModel.Email))
+                {
+                    throw new ArgumentException("Please enter an email");
+                }
+
+                if (SignInModel.Email.IndexOf("@") == -1)
+                {
+                    throw new ArgumentException("Please enter a valid email");
+                }
+
+                if (string.IsNullOrEmpty(SignInModel.Password))
+                {
+                    throw new ArgumentException("Please enter a password");
+                }
+
+                var signUpService = new SignUpServices();
+
+                var result = await signInService.AuthenticateUserAsync(SignInModel);
+
+                if (result > 0)
+                {
+                    await Application.Current.MainPage.Navigation.PushAsync(new CategoryPage());
+                }
+                else
+                {
+                    await Application.Current.MainPage.DisplayAlert("Error", "Incorrect email or password", "OK");
+                }
+            }
+            catch (ArgumentException ex)
+            {
+                await Application.Current.MainPage.DisplayAlert("Error", ex.Message, "OK");
+            }
+            catch (Exception)
+            {
+                await Application.Current.MainPage.DisplayAlert("Error", "An unexpected error occurred", "OK");
+            }
+        }
+
+
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
     }
 }

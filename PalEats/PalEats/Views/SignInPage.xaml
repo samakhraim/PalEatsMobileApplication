@@ -1,12 +1,67 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="PalEats.Views.SignInPage">
-    <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
-    </ContentPage.Content>
+             x:Class="PalEats.Views.SignInPage"
+             xmlns:b="clr-namespace:PalEats.ViewModel"
+             BackgroundColor="#FEF1E6">
+
+    <ContentPage.BindingContext>
+        <b:SignInViewModel />
+    </ContentPage.BindingContext>
+
+    <StackLayout Margin="16,32,16,32" VerticalOptions="FillAndExpand">
+        <StackLayout.Resources>
+            <Style TargetType="Label">
+                <Setter Property="FontFamily" Value="Lato" />
+                <Setter Property="TextColor" Value="#543214" />
+            </Style>
+            <Style TargetType="Frame">
+                <Setter Property="CornerRadius" Value="20" />
+                <Setter Property="BackgroundColor" Value="#EFDECF" />
+                <Setter Property="Padding" Value="20,5" />
+                <Setter Property="Margin" Value="30,10" />
+                <Setter Property="HasShadow" Value="True" />
+            </Style>
+            <Style TargetType="Button">
+                <Setter Property="BackgroundColor" Value="#EFDECF" />
+                <Setter Property="TextColor" Value="#543214" />
+                <Setter Property="HorizontalOptions" Value="CenterAndExpand" />
+                <Setter Property="CornerRadius" Value="20" />
+                <Setter Property="FontSize" Value="20" />
+                <Setter Property="Margin" Value="0,40,0,20" />
+            </Style>
+        </StackLayout.Resources>
+        <Label Text="Sign-In"
+           FontSize="48"
+           HorizontalOptions="Center"
+           Grid.Row="0" />
+
+        <Entry Text="{Binding SignInModel.Email}" 
+           Placeholder="Email" 
+           FontSize="Small" />
+
+        <Entry Text="{Binding SignInModel.Password}" 
+           Placeholder="Password" 
+           IsPassword="True" 
+           FontSize="Small" />
+
+        <Button Text="Sign In" 
+            Command="{Binding SignInCommand}"
+            Grid.Row="3" />
+
+        <Label Text="Don't have an account yet? Sign up"
+           HorizontalTextAlignment="Center"
+           Grid.Row="4">
+            <Label.FormattedText>
+                <FormattedString>
+                    <Span Text="Don't have an account yet? " />
+                    <Span Text="Sign up" TextDecorations="Underline" TextColor="Blue">
+                        <Span.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding Path=OnSignUpTappedCommand}" />
+                        </Span.GestureRecognizers>
+                    </Span>
+                </FormattedString>
+            </Label.FormattedText>
+        </Label>
+    </StackLayout>
 </ContentPage>
