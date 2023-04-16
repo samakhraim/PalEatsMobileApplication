@@ -1,27 +1,88 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:PalEats.ViewModels"
              xmlns:components="clr-namespace:PalEats.Views"
-             x:Class="PalEats.Views.RecipePage"  
-             NavigationPage.HasNavigationBar="False" >
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PalEats.Views.RecipePage" NavigationPage.HasNavigationBar="False" >
+    <ContentPage.BindingContext>
+        <local:RecipePageViewModel/>
+    </ContentPage.BindingContext>
     <ContentPage.Content>
-        <StackLayout  BackgroundColor="{StaticResource backgroundColor}">
-            <StackLayout HeightRequest="119" WidthRequest="360">
-                <Frame BackgroundColor="{StaticResource RecipeHeaderColor}" Padding="10" CornerRadius="7" HorizontalOptions="Start" VerticalOptions="Start" WidthRequest="400" HeightRequest="80">
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                        <ImageButton Grid.Column="0" Source="arrow.png" WidthRequest="10" HeightRequest="24" BackgroundColor="{StaticResource RecipeHeaderColor}" HorizontalOptions="StartAndExpand" Clicked="BackButton_Clicked"/>
-                        <Label Grid.Column="1" Text="Hummus" HorizontalOptions="StartAndExpand"  Padding="20" FontSize="30"  TextColor="{StaticResource MainTextColor}" />
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <ScrollView>
+                <StackLayout BackgroundColor="{StaticResource backgroundColor}" >
+                    <Grid BackgroundColor="{StaticResource RecipeHeaderColor}">
+                        <Image Source="{Binding Recipe.DishImgUrl }" Aspect="AspectFill" HeightRequest="300"/>
+                        <Frame BackgroundColor="{StaticResource RecipeHeaderColor}" Opacity=".65"  Padding="10" CornerRadius="20"
+                       HorizontalOptions="Start" VerticalOptions="Start" WidthRequest="400" HeightRequest="80">
+                            <Grid>
+                                <ImageButton Grid.Column="0" Source="arrow.png" WidthRequest="22" BackgroundColor="{StaticResource RecipeHeaderColor}"  HorizontalOptions="StartAndExpand" Clicked="BackButton_Clicked" Margin="25"/>
+                                <Label Text="{Binding Recipe.DishName}" TextColor="{StaticResource MainTextColor}" HorizontalOptions="CenterAndExpand" FontSize="30" Margin="21"/>
+                            </Grid>
+                        </Frame>
                     </Grid>
-                </Frame>
-            </StackLayout>
-            <StackLayout  VerticalOptions="EndAndExpand">
-                <components:NavigationComponent/>
-            </StackLayout>
-        </StackLayout>
+                    <StackLayout  Padding="0,15,0,0"  >
+                        <StackLayout Orientation="Horizontal"  Spacing="30" HeightRequest="63" WidthRequest="277" Margin="50,0,50,0">
+                            <StackLayout Orientation="Vertical" Spacing="5">
+                                <ImageButton BackgroundColor="{StaticResource backgroundColor}"  Source="clock.png" Aspect="AspectFit" WidthRequest="40" HeightRequest="40"/>
+                                <Label Text="{Binding Recipe.DueTime}" FontSize="Small" HorizontalTextAlignment="Center"/>
+                            </StackLayout>
+                            <StackLayout Orientation="Vertical" Spacing="5">
+                                <ImageButton BackgroundColor="{StaticResource backgroundColor}"   Source="fire.png" Aspect="AspectFit" HeightRequest="40" WidthRequest="50"/>
+                                <Label Text="{Binding Recipe.Calories}" FontSize="Small" HorizontalTextAlignment="Center"/>
+                            </StackLayout>
+                            <StackLayout Orientation="Vertical" Spacing="5" >
+                                <ImageButton BackgroundColor="{StaticResource backgroundColor}" Source="favorite.png" Aspect="AspectFit" HeightRequest="40" WidthRequest="40" />
+                                <Label Text="Favorite" FontSize="Small" HorizontalTextAlignment="Center"/>
 
+                            </StackLayout>
+                            <StackLayout Orientation="Vertical" Spacing="5" >
+                                <ImageButton BackgroundColor="{StaticResource backgroundColor}"  Source="share.png" Aspect="AspectFit" WidthRequest="28.67" HeightRequest="40" />
+                                <Label Text="Share " FontSize="Small" HorizontalTextAlignment="Center"/>
+                            </StackLayout>
+                        </StackLayout>
+                        <StackLayout>
+
+                            <Label  Text="Recipe Description:" Margin="5,15,0,0" FontSize="20" FontAttributes="Bold" TextColor="{StaticResource MainTextColor}"/>
+                            <Label Text="{Binding Recipe.Description}" Margin="10,0,0,0"  FontSize="16" TextColor="{StaticResource MainTextColor}"/>
+                        </StackLayout>
+                        <StackLayout>
+                            <Grid >
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <Label FontSize="20" FontAttributes="Bold" Text="Ingredients:" Margin="5,0,0,0" TextColor="{StaticResource MainTextColor}" Grid.Column="0" />
+                                <Label Text="{Binding NumberOfPeople}" FontSize="16" Margin="0,0,10,0"  TextColor="{StaticResource MainTextColor}" Grid.Column="1" Grid.Row="0" HorizontalOptions="End" />
+                            </Grid>
+                            <CollectionView ItemsSource="{Binding Ingredients}"  HeightRequest="{Binding IngredientsHeight}"  Margin="10,0,0,0">
+                                <CollectionView.ItemTemplate>
+                                    <DataTemplate>
+                                        <Label Text="{Binding Description}" Margin="0,0,0,5" TextColor="{StaticResource MainTextColor}" FontSize="16"  />
+                                    </DataTemplate>
+                                </CollectionView.ItemTemplate>
+                            </CollectionView>
+                        </StackLayout>
+                        <StackLayout>
+                            <Label FontSize="20" TextColor="{StaticResource MainTextColor}" FontAttributes="Bold" Text="Preparation: " Margin="5,0,0,0" />
+                            <CollectionView ItemsSource="{Binding Preparation}"  Margin="10,0,0,0"  >
+                                <CollectionView.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackLayout >
+                                            <Label Text="{Binding}" Margin="0,0,0,5" TextColor="{StaticResource MainTextColor}" FontSize="16" />
+                                        </StackLayout>
+                                    </DataTemplate>
+                                </CollectionView.ItemTemplate>
+                            </CollectionView>
+                        </StackLayout>
+                    </StackLayout>
+                </StackLayout>
+            </ScrollView >
+            <components:NavigationComponent VerticalOptions="End" Margin="0"/>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>
