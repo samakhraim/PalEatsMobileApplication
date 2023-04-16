@@ -1,4 +1,6 @@
-﻿using System;
+﻿using PalEats.Models;
+using PalEats.Views;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,6 +17,17 @@ namespace PalEats.Views
         public SearchPage()
         {
             InitializeComponent();
+        }
+        private async void OnCollectionViewSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var collectionView = sender as CollectionView;
+            var selectedDish = e.CurrentSelection.FirstOrDefault() as Dish;
+
+            if (selectedDish != null)
+            {
+                collectionView.SelectedItem = null;
+                await Navigation.PushAsync(new RecipePage(selectedDish.DishId));
+            }
         }
         private async void BackButton_Clicked(object sender, EventArgs e)
         {
