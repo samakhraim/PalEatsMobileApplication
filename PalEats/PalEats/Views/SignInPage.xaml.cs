@@ -17,5 +17,6 @@ namespace PalEats.Views
             InitializeComponent();
             NavigationPage.SetHasNavigationBar(this, false);
         }
+      
     }
 }
