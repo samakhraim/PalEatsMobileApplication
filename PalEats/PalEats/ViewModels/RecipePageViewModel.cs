@@ -8,6 +8,8 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
+using Xamarin.Forms;
 namespace PalEats.ViewModels
 {
     public class RecipePageViewModel : INotifyPropertyChanged
@@ -20,6 +22,8 @@ namespace PalEats.ViewModels
 
             Task.Run(() => this.LoadRecipesAsync()).Wait();
             Task.Run(() => this.LoadIngredientsAsync()).Wait();
+            FavoriteButtonClicked = new Command(async () => await AddToFavoriteAsync());
+
         }
         public List<String> Preparation
         {
@@ -41,6 +45,8 @@ namespace PalEats.ViewModels
             get { return "Serves " + Recipe.NumberOfPeople; }
             set {; }
         }
+        public ICommand FavoriteButtonClicked { get; private set; }
+
         public int IngredientsHeight
         {
             get
@@ -64,7 +70,7 @@ namespace PalEats.ViewModels
         {
             try
             {
-                Recipe = await recipeServices.GetRecipesAsync(6875);
+                Recipe = await recipeServices.GetRecipesAsync(6876);
             }
             catch (Exception ex)
             {
@@ -87,7 +93,7 @@ namespace PalEats.ViewModels
         {
             try
             {
-                Ingredients = await recipeServices.GetIngredientsAsync(6875);
+                Ingredients = await recipeServices.GetIngredientsAsync(6876);
             }
             catch (Exception ex)
             {
@@ -97,6 +103,35 @@ namespace PalEats.ViewModels
             }
         }
 
+        private async Task AddToFavoriteAsync()
+        {
+            try
+            { 
+                var favoriteService = new FavoriteServices();
+
+                var result = await favoriteService.AddFavoriteAsync(4,Recipe.DishId);
+
+                if (result > 0)
+                {
+                }
+                else if (result == 0)
+                {
+                    await App.Current.MainPage.DisplayAlert("Error", "you already added this recipe to your favaorite", "OK");
+                }
+                else
+                {
+                    await App.Current.MainPage.DisplayAlert("Error", "add to favorite failed", "OK");
+                }
+            }
+            catch (ArgumentException ex)
+            {
+                await App.Current.MainPage.DisplayAlert("Error", ex.Message, "OK");
+            }
+            catch (Exception)
+            {
+                await App.Current.MainPage.DisplayAlert("Error", "An error occurred while adding to favorite", "OK");
+            }
+        }
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged(string propertyName)
         {
