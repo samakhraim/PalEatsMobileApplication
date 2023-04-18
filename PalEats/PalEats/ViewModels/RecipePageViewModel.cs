@@ -16,14 +16,28 @@ namespace PalEats.ViewModels
     {
         private readonly RecipeServices recipeServices;
 
-        public RecipePageViewModel()
+        public RecipePageViewModel(int selectedDish)
         {
             recipeServices = new RecipeServices();
-
+            DishId = selectedDish;
             Task.Run(() => this.LoadRecipesAsync()).Wait();
             Task.Run(() => this.LoadIngredientsAsync()).Wait();
             FavoriteButtonClicked = new Command(async () => await AddToFavoriteAsync());
 
+        }
+        private int selectedDish;
+
+        public int DishId
+        {
+            get { return selectedDish; }
+            set
+            {
+                if (selectedDish != value)
+                {
+                    selectedDish = value;
+                    OnPropertyChanged(nameof(DishId));
+                }
+            }
         }
         public List<String> Preparation
         {
@@ -56,8 +70,8 @@ namespace PalEats.ViewModels
             }
             set {; }
         }
-        private RecipeModel recipe = new RecipeModel();
-        public RecipeModel Recipe
+        private Recipe recipe = new Recipe();
+        public Recipe Recipe
         {
             get { return recipe; }
             set
@@ -70,7 +84,7 @@ namespace PalEats.ViewModels
         {
             try
             {
-                Recipe = await recipeServices.GetRecipesAsync(6876);
+                Recipe = await recipeServices.GetRecipesAsync(DishId);
             }
             catch (Exception ex)
             {
@@ -79,8 +93,8 @@ namespace PalEats.ViewModels
                 await App.Current.MainPage.DisplayAlert("Error", "An error occurred while loading recipes. Please try again later.", "OK");
             }
         }
-        private List<IngredientsModel> ingredients = new List<IngredientsModel>();
-        public List<IngredientsModel> Ingredients
+        private List<Ingredients> ingredients = new List<Ingredients>();
+        public List<Ingredients> Ingredients
         {
             get { return ingredients; }
             set
@@ -93,7 +107,7 @@ namespace PalEats.ViewModels
         {
             try
             {
-                Ingredients = await recipeServices.GetIngredientsAsync(6876);
+                Ingredients = await recipeServices.GetIngredientsAsync(DishId);
             }
             catch (Exception ex)
             {

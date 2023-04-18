@@ -1,12 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:local="clr-namespace:PalEats.ViewModels"
              xmlns:components="clr-namespace:PalEats.Views"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="PalEats.Views.RecipePage" NavigationPage.HasNavigationBar="False" >
-    <ContentPage.BindingContext>
-        <local:RecipePageViewModel/>
-    </ContentPage.BindingContext>
+             x:Class="PalEats.Views.RecipePage" 
+             NavigationPage.HasNavigationBar="False" >
+
     <ContentPage.Content>
         <Grid>
             <Grid.RowDefinitions>
@@ -41,7 +39,7 @@
 
                             </StackLayout>
                             <StackLayout Orientation="Vertical" Spacing="5" >
-                                <ImageButton BackgroundColor="{StaticResource backgroundColor}"  Source="share.png" Aspect="AspectFit" WidthRequest="28.67" HeightRequest="40" />
+                                <ImageButton BackgroundColor="{StaticResource backgroundColor}" Clicked="ShareButton_Clicked"  Source="share.png" Aspect="AspectFit" WidthRequest="28.67" HeightRequest="40" />
                                 <Label Text="Share " FontSize="Small" HorizontalTextAlignment="Center"/>
                             </StackLayout>
                         </StackLayout>

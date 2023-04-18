@@ -5,7 +5,7 @@ using System.Text;
 using Xamarin.Forms;
 namespace PalEats.Models
 {
-    public class RecipeModel
+    public class Recipe
     {
         public string Description { get; set; }
         public int DishId { get; set; }
