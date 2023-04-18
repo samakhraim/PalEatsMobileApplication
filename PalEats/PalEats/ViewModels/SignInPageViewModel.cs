@@ -14,14 +14,20 @@ namespace PalEats.ViewModel
     public class SignInViewModel : INotifyPropertyChanged
     {
         private SignInServices signInService;
-
+        public ICommand GuestClicked { get; }
         public SignInViewModel()
         {
             SignInCommand = new Command(async () => await SignInAsync());
             OnSignUpTappedCommand = new Command(async () => await Application.Current.MainPage.Navigation.PushAsync(new SignUpPage()));
             signInService = new SignInServices();
+            GuestClicked = new Command(async () => await OnGuestClicked());
+
         }
 
+        private async Task OnGuestClicked()
+        {
+            await Application.Current.MainPage.Navigation.PushAsync(new CategoryPage());
+        }
         private SignUpModel signInModel = new SignUpModel();
         public SignUpModel SignInModel
         {

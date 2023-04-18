@@ -1,56 +1,87 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+﻿<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="PalEats.Views.SignInPage"
              xmlns:b="clr-namespace:PalEats.ViewModel"
-             BackgroundColor="#FEF1E6">
+             BackgroundColor="{StaticResource backgroundColor}">
 
     <ContentPage.BindingContext>
         <b:SignInViewModel />
     </ContentPage.BindingContext>
 
-    <StackLayout Margin="16,32,16,32" VerticalOptions="FillAndExpand">
-        <StackLayout.Resources>
-            <Style TargetType="Label">
-                <Setter Property="FontFamily" Value="Lato" />
-                <Setter Property="TextColor" Value="#543214" />
-            </Style>
-            <Style TargetType="Frame">
-                <Setter Property="CornerRadius" Value="20" />
-                <Setter Property="BackgroundColor" Value="#EFDECF" />
-                <Setter Property="Padding" Value="20,5" />
-                <Setter Property="Margin" Value="30,10" />
-                <Setter Property="HasShadow" Value="True" />
-            </Style>
-            <Style TargetType="Button">
-                <Setter Property="BackgroundColor" Value="#EFDECF" />
-                <Setter Property="TextColor" Value="#543214" />
-                <Setter Property="HorizontalOptions" Value="CenterAndExpand" />
-                <Setter Property="CornerRadius" Value="20" />
-                <Setter Property="FontSize" Value="20" />
-                <Setter Property="Margin" Value="0,40,0,20" />
-            </Style>
-        </StackLayout.Resources>
+    <Grid Margin="16,32,16,32" VerticalOptions="FillAndExpand">
+        <Grid.RowDefinitions >
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
         <Label Text="Sign-In"
-           FontSize="48"
-           HorizontalOptions="Center"
-           Grid.Row="0" />
+               FontSize="48"
+               HorizontalOptions="Center"
+               TextColor="{StaticResource MainTextColor}"
+               FontFamily="Lato"
+               Grid.Row="0" />
 
-        <Entry Text="{Binding SignInModel.Email}" 
-           Placeholder="Email" 
-           FontSize="Small" />
+        <Frame CornerRadius="20"
+               BackgroundColor="{StaticResource FrameBackgroundColor}"
+               Padding="20,5" 
+               Margin="30,10"
+               HasShadow="True"
+               Grid.Row="1">
+            <Entry Text="{Binding SignInModel.Email}" 
+                   Placeholder="Email" 
+                   FontSize="Small" />
+        </Frame>
 
-        <Entry Text="{Binding SignInModel.Password}" 
-           Placeholder="Password" 
-           IsPassword="True" 
-           FontSize="Small" />
+        <Frame CornerRadius="20"        
+               BackgroundColor="{StaticResource FrameBackgroundColor}"
+               Padding="20,5" 
+               Margin="30,10"
+               HasShadow="True"
+               Grid.Row="2">
+            <Entry Text="{Binding SignInModel.Password}" 
+                   Placeholder="Password" 
+                   IsPassword="True" 
+                   FontSize="Small" />
+        </Frame>
 
-        <Button Text="Sign In" 
-            Command="{Binding SignInCommand}"
-            Grid.Row="3" />
+        <StackLayout HorizontalOptions="CenterAndExpand"
+                     Grid.Row="3">
+            <Button Text="Sign In" 
+                    BackgroundColor="{StaticResource FrameBackgroundColor}"
+                    TextColor="{StaticResource MainTextColor}"
+                    Command="{Binding SignInCommand}"
+                    CornerRadius="20"
+                    FontSize="20"
+                    Margin="0,40"
+                    WidthRequest="200" />
+            <Label Text="Or Continue As "
+            HorizontalOptions="Center"
+            FontSize="20"
+            TextColor="{StaticResource MainTextColor}"/>
+
+
+
+            <ImageButton Source="guest.png"
+                     HeightRequest="62"
+                     WidthRequest="80"
+                     Aspect="AspectFill"
+                     Command="{Binding OnGuestClicked}"
+                     Padding="40"
+                     Margin="10"
+                     BackgroundColor="Transparent"
+                     CornerRadius="30" />
+            
+        </StackLayout>
 
         <Label Text="Don't have an account yet? Sign up"
            HorizontalTextAlignment="Center"
+           FontFamily="Lato"
+           TextColor="{StaticResource MainTextColor}"
            Grid.Row="4">
             <Label.FormattedText>
                 <FormattedString>
@@ -63,5 +94,5 @@
                 </FormattedString>
             </Label.FormattedText>
         </Label>
-    </StackLayout>
+    </Grid>
 </ContentPage>
