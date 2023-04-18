@@ -15,8 +15,10 @@ namespace PalEats
         {
             InitializeComponent();
 
-            MainPage = new NavigationPage(new RecipePage(6875));
+
+            MainPage = new NavigationPage(new RecipePage());
             MessagingCenter.Subscribe<RecipePage,ShareInfo>(this, "ShareRecipe", OnShareRecipe);
+
 
         }
         private async void OnShareRecipe(RecipePage sender, ShareInfo information)

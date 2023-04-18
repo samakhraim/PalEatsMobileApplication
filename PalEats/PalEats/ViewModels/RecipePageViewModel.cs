@@ -14,12 +14,26 @@ namespace PalEats.ViewModels
     {
         private readonly RecipeServices recipeServices;
 
-        public RecipePageViewModel()
+        public RecipePageViewModel(int selectedDish)
         {
             recipeServices = new RecipeServices();
-
+            DishId = selectedDish;
             Task.Run(() => this.LoadRecipesAsync()).Wait();
             Task.Run(() => this.LoadIngredientsAsync()).Wait();
+        }
+        private int selectedDish;
+
+        public int DishId
+        {
+            get { return selectedDish; }
+            set
+            {
+                if (selectedDish != value)
+                {
+                    selectedDish = value;
+                    OnPropertyChanged(nameof(DishId));
+                }
+            }
         }
         public List<String> Preparation
         {
@@ -64,7 +78,7 @@ namespace PalEats.ViewModels
         {
             try
             {
-                Recipe = await recipeServices.GetRecipesAsync(6875);
+                Recipe = await recipeServices.GetRecipesAsync(DishId);
             }
             catch (Exception ex)
             {
@@ -87,7 +101,7 @@ namespace PalEats.ViewModels
         {
             try
             {
-                Ingredients = await recipeServices.GetIngredientsAsync(6875);
+                Ingredients = await recipeServices.GetIngredientsAsync(DishId);
             }
             catch (Exception ex)
             {

@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 using PalEats.Models;
 using PalEats.Services;
 using PalEats.ViewModels;
+
 using Xamarin.Essentials;
+
+
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 namespace PalEats.Views
@@ -14,6 +17,7 @@ namespace PalEats.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class RecipePage : ContentPage
     {
+
         int id;
         private RecipePageViewModel viewModel = new RecipePageViewModel();
         public RecipePage(int id)
@@ -21,6 +25,14 @@ namespace PalEats.Views
             InitializeComponent();
             this.id = id;
             var recipe = viewModel.Recipe;
+
+
+        RecipePageViewModel viewModel;
+        public RecipePage(int id)
+        {
+            InitializeComponent();
+            viewModel = new RecipePageViewModel(id);
+            BindingContext = viewModel;
 
         }
         private async void BackButton_Clicked(object sender, EventArgs e)
