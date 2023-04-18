@@ -18,6 +18,9 @@
                     </Grid>
                 </Frame>
             </StackLayout>
+            <Label x:Name="MyDish"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
             <StackLayout  VerticalOptions="EndAndExpand">
                 <components:NavigationComponent/>
             </StackLayout>
