@@ -11,13 +11,10 @@ namespace PalEats
         {
             InitializeComponent();
 
-            MainPage = new RecipePage(6875);
+            MainPage = new NavigationPage(new RecipePage(6873));
         }
         protected override void OnStart()
         {
-            var rootPage = new RecipePage(6875);
-            var navigationPage = new NavigationPage(rootPage);
-            MainPage = navigationPage;
 
         }
         protected override void OnSleep()
