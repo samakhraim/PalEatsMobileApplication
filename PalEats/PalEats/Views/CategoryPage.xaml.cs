@@ -13,6 +13,7 @@ namespace PalEats.Views
         {
             InitializeComponent();
         }
+
         private async void OnCollectionViewSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var collectionView = sender as CollectionView;
@@ -21,12 +22,32 @@ namespace PalEats.Views
             if (selectedCategory != null)
             {
                 collectionView.SelectedItem = null;
-                await Navigation.PushAsync(new SubcategoryPage(selectedCategory.CategoryId));
+
+                string pageTitle =null;
+                switch (selectedCategory.CategoryId)
+                {
+                    case 3:
+                        pageTitle = "Sweets";
+                        break;
+                    case 2:
+                        pageTitle = "Breakfast";
+                        break;
+                    case 4:
+                        pageTitle = "Appetizers";
+                        break;
+                    case 1:
+                        pageTitle = "Main Dish";
+                        break;
+                }
+
+                await Navigation.PushAsync(new SubcategoryPage(pageTitle, selectedCategory.CategoryId));
             }
         }
+
         private async void BackButton_Clicked(object sender, EventArgs e)
         {
             await Navigation.PopAsync();
         }
     }
 }
+
