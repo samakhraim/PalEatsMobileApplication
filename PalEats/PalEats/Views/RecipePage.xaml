@@ -41,7 +41,7 @@
 
                             </StackLayout>
                             <StackLayout Orientation="Vertical" Spacing="5" >
-                                <ImageButton BackgroundColor="{StaticResource backgroundColor}"  Source="share.png" Aspect="AspectFit" WidthRequest="28.67" HeightRequest="40" />
+                                <ImageButton BackgroundColor="{StaticResource backgroundColor}" Clicked="ShareButton_Clicked"  Source="share.png" Aspect="AspectFit" WidthRequest="28.67" HeightRequest="40" />
                                 <Label Text="Share " FontSize="Small" HorizontalTextAlignment="Center"/>
                             </StackLayout>
                         </StackLayout>

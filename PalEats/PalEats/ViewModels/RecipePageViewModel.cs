@@ -50,8 +50,8 @@ namespace PalEats.ViewModels
             }
             set {; }
         }
-        private RecipeModel recipe = new RecipeModel();
-        public RecipeModel Recipe
+        private Recipe recipe = new Recipe();
+        public Recipe Recipe
         {
             get { return recipe; }
             set
@@ -73,8 +73,8 @@ namespace PalEats.ViewModels
                 await App.Current.MainPage.DisplayAlert("Error", "An error occurred while loading recipes. Please try again later.", "OK");
             }
         }
-        private List<IngredientsModel> ingredients = new List<IngredientsModel>();
-        public List<IngredientsModel> Ingredients
+        private List<Ingredients> ingredients = new List<Ingredients>();
+        public List<Ingredients> Ingredients
         {
             get { return ingredients; }
             set
