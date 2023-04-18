@@ -9,9 +9,9 @@ namespace PalEats.Services
     public class RecipeServices
     {
         string connectionString = "Data Source=paleatserver.database.windows.net;Initial Catalog=PalEatsDB;Persist Security Info=True;User ID=sama;Password=S11a7m2!a000";
-        public async Task<RecipeModel> GetRecipesAsync(int id)
+        public async Task<Recipe> GetRecipesAsync(int id)
         {
-            RecipeModel recipe = new RecipeModel();
+            Recipe recipe = new Recipe();
             try
             {
                 using (SqlConnection connection = new SqlConnection(connectionString))
@@ -22,7 +22,7 @@ namespace PalEats.Services
                     SqlDataReader reader = await command.ExecuteReaderAsync();
                     while (await reader.ReadAsync())
                     {
-                        recipe = new RecipeModel
+                        recipe = new Recipe
                         {
                             DishId = Convert.ToInt32(reader["DishId"]),
                             DishName = reader["DishName"].ToString(),
@@ -52,9 +52,9 @@ namespace PalEats.Services
 
             return recipe;
         }
-        public async Task<List<IngredientsModel>> GetIngredientsAsync(int id)
+        public async Task<List<Ingredients>> GetIngredientsAsync(int id)
         {
-            List<IngredientsModel> ingredients = new List<IngredientsModel>();
+            List<Ingredients> ingredients = new List<Ingredients>();
             try
             {
                 using (SqlConnection connection = new SqlConnection(connectionString))
@@ -66,7 +66,7 @@ namespace PalEats.Services
 
                     while (await reader.ReadAsync())
                     {
-                        IngredientsModel ingredient = new IngredientsModel
+                        Ingredients ingredient = new Ingredients
                         {
 
                             Description = reader["Amount"].ToString() + " " + reader["IngredientsName"].ToString(),

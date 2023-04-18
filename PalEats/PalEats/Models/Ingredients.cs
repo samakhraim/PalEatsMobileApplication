@@ -4,7 +4,7 @@ using System.Text;
 
 namespace PalEats.Models
 {
-    public class IngredientsModel
+    public class Ingredients
     {
         public string Description { get; set; }
 
