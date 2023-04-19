@@ -5,7 +5,6 @@ using PalEats.Views;
 using Xamarin.Essentials;
 using PalEats.Models;
 using System.Linq;
-
 namespace PalEats
 
 {
@@ -15,11 +14,8 @@ namespace PalEats
         {
             InitializeComponent();
 
-
-            MainPage = new NavigationPage(new RecipePage(6876));
+            MainPage = new NavigationPage(new RecipePage(6877));
             MessagingCenter.Subscribe<RecipePage,ShareInfo>(this, "ShareRecipe", OnShareRecipe);
-
-
         }
         private async void OnShareRecipe(RecipePage sender, ShareInfo information)
         {

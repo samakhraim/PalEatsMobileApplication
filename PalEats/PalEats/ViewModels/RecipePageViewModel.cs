@@ -23,7 +23,27 @@ namespace PalEats.ViewModels
             Task.Run(() => this.LoadRecipesAsync()).Wait();
             Task.Run(() => this.LoadIngredientsAsync()).Wait();
             FavoriteButtonClicked = new Command(async () => await AddToFavoriteAsync());
+            Task.Run(() => this.LoadFavoriteStatusAsync()).Wait();
 
+
+
+        }
+        private bool Selected = false;
+
+        public string FavoritePath
+        {
+
+            get
+            {
+                if (Selected)
+                    return "favorite_selected.png";
+                else
+                    return "favorite.png";
+            }
+            set
+            {
+                ;
+            }
         }
         private int selectedDish;
 
@@ -127,6 +147,7 @@ namespace PalEats.ViewModels
 
                 if (result > 0)
                 {
+                    App.Current.MainPage=new RecipePage(DishId);
                 }
                 else if (result == 0)
                 {
@@ -150,6 +171,22 @@ namespace PalEats.ViewModels
         protected virtual void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        public async Task LoadFavoriteStatusAsync()
+        {
+            try
+            {
+                var favoriteService = new FavoriteServices();
+                Selected = await favoriteService.IsSelectedAsync(4, DishId);
+
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"Error while loading recipes: {ex.Message}");
+
+                await App.Current.MainPage.DisplayAlert("Error", "An error occurred while loading recipes. Please try again later.", "OK");
+            }
         }
     }
 }

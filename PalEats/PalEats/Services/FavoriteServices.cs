@@ -41,16 +41,58 @@ namespace PalEats.Services
             }
             catch (SqlException ex)
             {
-                Debug.WriteLine("SQL Error fetching recipes: " + ex.Message);
-                throw new Exception("SQL Error: Failed to fetch recipes. Message: " + ex.Message);
+                Debug.WriteLine("SQL Error adding to favorite: " + ex.Message);
+                throw new Exception("SQL Error: Unable to add to favorite. Message: " + ex.Message);
             }
             catch (Exception ex)
             {
-                Debug.WriteLine("Error fetching recipes: " + ex.Message);
-                throw new Exception("Failed to fetch recipes. Message: " + ex.Message);
+                Debug.WriteLine("Error adding to favorite: " + ex.Message);
+                throw new Exception(" Unable to add to favorite. Message: " + ex.Message);
             }
 
             return rowsAffected;
         }
+
+
+
+        public async Task<bool> IsSelectedAsync(int userId, int dishId)
+        {
+            bool output =false;
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    await connection.OpenAsync();
+                    SqlCommand checkCommand = new SqlCommand("SELECT COUNT(*) FROM [Favorite] WHERE DishId = @DishId AND UserId = @UserId", connection);
+                    checkCommand.Parameters.AddWithValue("@DishId", dishId);
+                    checkCommand.Parameters.AddWithValue("@UserId", userId);
+
+                    int count = (int)await checkCommand.ExecuteScalarAsync();
+
+                    if (count > 0)
+                    {
+                        // given user has recipe as favorite, so return 0 to indicate failure
+                        output =true;
+                    }
+
+                    connection.Close();
+                }
+            }
+            catch (SqlException ex)
+            {
+                Debug.WriteLine("SQL Error fetching favorite status: " + ex.Message);
+                throw new Exception("SQL Error: Failed to fetch favorite status. Message: " + ex.Message);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("Error fetching favorite status: " + ex.Message);
+                throw new Exception("Failed to fetch favorite status. Message: " + ex.Message);
+            }
+            Debug.WriteLine(output);
+            return output;
+        }
+
+
     }
+
 }
