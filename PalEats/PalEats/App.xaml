@@ -12,7 +12,10 @@
             <Color x:Key="IngredientIconBackground">#F9EFE3</Color>
             <Color x:Key="CatagorySelectionCardColor">#F9EFE3</Color>
             <Color x:Key="ClickedNavbarButtonBackground">#E7C1C1</Color>
+            <Color x:Key="FrameBackgroundColor">#EFDECF</Color>
 
         </ResourceDictionary>
     </Application.Resources>
 </Application>
+    
+    

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PalEats.Views;
+using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using PalEats.Views;
@@ -7,12 +8,17 @@ using PalEats.Models;
 using System.Linq;
 namespace PalEats
 
+namespace PalEats
 {
     public partial class App : Application
     {
         public App()
         {
             InitializeComponent();
+
+
+            MainPage = new NavigationPage (new  SignUpPage());
+        }
 
             MainPage = new NavigationPage(new RecipePage(6877));
             MessagingCenter.Subscribe<RecipePage,ShareInfo>(this, "ShareRecipe", OnShareRecipe);
@@ -32,13 +38,15 @@ namespace PalEats
         {
 
         }
+
         protected override void OnSleep()
         {
 
         }
         protected override void OnResume()
         {
-
         }
     }
+}
+
 }

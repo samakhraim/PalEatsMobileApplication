@@ -1,12 +1,98 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+﻿<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="PalEats.Views.SignInPage">
-    <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+             x:Class="PalEats.Views.SignInPage"
+             xmlns:b="clr-namespace:PalEats.ViewModel"
+             BackgroundColor="{StaticResource backgroundColor}">
+
+    <ContentPage.BindingContext>
+        <b:SignInViewModel />
+    </ContentPage.BindingContext>
+
+    <Grid Margin="16,32,16,32" VerticalOptions="FillAndExpand">
+        <Grid.RowDefinitions >
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <Label Text="Sign-In"
+               FontSize="48"
+               HorizontalOptions="Center"
+               TextColor="{StaticResource MainTextColor}"
+               FontFamily="Lato"
+               Grid.Row="0" />
+
+        <Frame CornerRadius="20"
+               BackgroundColor="{StaticResource FrameBackgroundColor}"
+               Padding="20,5" 
+               Margin="30,10"
+               HasShadow="True"
+               Grid.Row="1">
+            <Entry Text="{Binding SignInModel.Email}" 
+                   Placeholder="Email" 
+                   FontSize="Small" />
+        </Frame>
+
+        <Frame CornerRadius="20"        
+               BackgroundColor="{StaticResource FrameBackgroundColor}"
+               Padding="20,5" 
+               Margin="30,10"
+               HasShadow="True"
+               Grid.Row="2">
+            <Entry Text="{Binding SignInModel.Password}" 
+                   Placeholder="Password" 
+                   IsPassword="True" 
+                   FontSize="Small" />
+        </Frame>
+
+        <StackLayout HorizontalOptions="CenterAndExpand"
+                     Grid.Row="3">
+            <Button Text="Sign In" 
+                    BackgroundColor="{StaticResource FrameBackgroundColor}"
+                    TextColor="{StaticResource MainTextColor}"
+                    Command="{Binding SignInCommand}"
+                    CornerRadius="20"
+                    FontSize="20"
+                    Margin="0,40"
+                    WidthRequest="200" />
+            <Label Text="Or Continue As "
+            HorizontalOptions="Center"
+            FontSize="20"
+            TextColor="{StaticResource MainTextColor}"/>
+
+
+
+            <ImageButton Source="guest.png"
+                     HeightRequest="62"
+                     WidthRequest="80"
+                     Aspect="AspectFill"
+                     Command="{Binding OnGuestClicked}"
+                     Padding="40"
+                     Margin="10"
+                     BackgroundColor="Transparent"
+                     CornerRadius="30" />
+            
         </StackLayout>
-    </ContentPage.Content>
+
+        <Label Text="Don't have an account yet? Sign up"
+           HorizontalTextAlignment="Center"
+           FontFamily="Lato"
+           TextColor="{StaticResource MainTextColor}"
+           Grid.Row="4">
+            <Label.FormattedText>
+                <FormattedString>
+                    <Span Text="Don't have an account yet? " />
+                    <Span Text="Sign up" TextDecorations="Underline" TextColor="Blue">
+                        <Span.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding Path=OnSignUpTappedCommand}" />
+                        </Span.GestureRecognizers>
+                    </Span>
+                </FormattedString>
+            </Label.FormattedText>
+        </Label>
+    </Grid>
 </ContentPage>

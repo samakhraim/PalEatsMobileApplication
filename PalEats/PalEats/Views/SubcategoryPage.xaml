@@ -1,21 +1,54 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-              xmlns:components="clr-namespace:PalEats.Views"
-             x:Class="PalEats.Views.SubcategoryPage" NavigationPage.HasNavigationBar="False" >
+             xmlns:local="clr-namespace:PalEats.ViewModels"
+             x:Class="PalEats.Views.SubcategoryPage"
+             NavigationPage.HasNavigationBar="False"               
+             xmlns:components="clr-namespace:PalEats.Views">
+
+
     <ContentPage.Content>
-        <StackLayout  BackgroundColor="{StaticResource backgroundColor}">
-            <StackLayout HeightRequest="119" WidthRequest="360">
-                <Frame BackgroundColor="{StaticResource MainHeadandNavbarColor}" Padding="10" CornerRadius="7" HorizontalOptions="Start" VerticalOptions="Start" WidthRequest="400" HeightRequest="80">
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                        <ImageButton Grid.Column="0" Source="arrow.png" WidthRequest="10" HeightRequest="24" BackgroundColor="{StaticResource MainHeadandNavbarColor}" HorizontalOptions="StartAndExpand" Clicked="BackButton_Clicked" />
-                        <Label Grid.Column="1" Text="Sweet" HorizontalOptions="StartAndExpand" Padding="20" FontSize="30"  TextColor="{StaticResource MainTextColor}" />
-                    </Grid>
-                </Frame>
+        <StackLayout BackgroundColor="{StaticResource backgroundColor }">
+            <StackLayout>
+                <StackLayout  HeightRequest="119" WidthRequest="360">
+                    <Frame  BackgroundColor="{StaticResource MainHeadandNavbarColor}" Padding="10" CornerRadius="7" WidthRequest="400" HeightRequest="80">
+                        <Label Text="{Binding CategoryName}" Padding="15" HorizontalOptions="StartAndExpand" FontSize="30"  TextColor="{StaticResource MainTextColor}" />
+                    </Frame>
+                </StackLayout>
+   
+            </StackLayout>
+            <StackLayout Padding="15" Margin="0,30,0,0">
+
+                <CollectionView ItemsSource="{Binding Dishes}" SelectionMode="Single" SelectionChanged="OnCollectionViewSelectionChanged">
+                    <CollectionView.ItemsLayout>
+                        
+                        <GridItemsLayout Orientation="Vertical" Span="2" HorizontalItemSpacing="15" VerticalItemSpacing="15"/>
+                    </CollectionView.ItemsLayout>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Frame IsClippedToBounds="True" Padding="0" HeightRequest="270" CornerRadius="20">
+                                <RelativeLayout>
+                                    <Image Source="{Binding DishImgUrl}" 
+                                   Aspect="AspectFill"
+                                   RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width}"
+                                   RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,Property=Height}"
+                                   
+                                   />
+
+                                    <Grid RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width}"
+                                      RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,Property=Height}"
+                                      >
+                                        <Frame HeightRequest="60" VerticalOptions="End" BackgroundColor="#F9EFE3" Opacity="0.6" CornerRadius="20">
+                                            <Label Text="{Binding DishName}" HorizontalOptions="Center" FontAttributes="Bold" VerticalOptions="Center" TextColor="#543214" FontSize="Large"/>
+                                        </Frame>
+                                    </Grid>
+
+                                </RelativeLayout>
+                            </Frame>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
             </StackLayout>
             <StackLayout  VerticalOptions="EndAndExpand">
                 <components:NavigationComponent/>
