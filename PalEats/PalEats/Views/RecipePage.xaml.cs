@@ -1,8 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
+using PalEats.Models;
+using PalEats.ViewModels;
+using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -11,15 +10,38 @@ namespace PalEats.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class RecipePage : ContentPage
     {
-        public RecipePage(int SelectedDishId)
+
+        RecipePageViewModel viewModel;
+        public RecipePage(int id)
         {
             InitializeComponent();
-            string title = "This is the Dish with the following ID : " + SelectedDishId.ToString();
-            MyDish.Text = title;
+            viewModel = new RecipePageViewModel(id);
+            BindingContext = viewModel;
+
         }
         private async void BackButton_Clicked(object sender, EventArgs e)
         {
             await Navigation.PopAsync();
+        }
+
+        private void ShareButton_Clicked(object sender, EventArgs e)
+        {
+
+            ShareInfo information = new ShareInfo()
+            {
+                DishName = viewModel.Recipe.DishName,
+                Description = viewModel.Recipe.Description,
+                NumberOfPeople = viewModel.Recipe.NumberOfPeople,
+                Ingredients = viewModel.Ingredients,
+                Preparation = viewModel.Preparation
+            };
+            MessagingCenter.Send(this, "ShareRecipe", information);
+        }
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+
+            MessagingCenter.Unsubscribe<RecipePage, Recipe>(this, "ShareRecipe");
         }
     }
 }
