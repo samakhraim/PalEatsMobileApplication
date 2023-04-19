@@ -8,6 +8,8 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
+using Xamarin.Forms;
 namespace PalEats.ViewModels
 {
     public class RecipePageViewModel : INotifyPropertyChanged
@@ -20,6 +22,34 @@ namespace PalEats.ViewModels
             DishId = selectedDish;
             Task.Run(() => this.LoadRecipesAsync()).Wait();
             Task.Run(() => this.LoadIngredientsAsync()).Wait();
+            Task.Run(() => this.LoadFavoriteStatusAsync()).Wait();
+            if (Selected)
+                FavoriteButtonClicked = new Command(async () => await RemoveFavoriteAsync());
+            else
+                FavoriteButtonClicked = new Command(async () => await AddToFavoriteAsync());
+
+
+
+
+        }
+
+
+        private bool Selected = false;
+
+        public string FavoritePath
+        {
+
+            get
+            {
+                if (Selected)
+                    return "favorite_selected.png";
+                else
+                    return "favorite.png";
+            }
+            set
+            {
+                ;
+            }
         }
         private int selectedDish;
 
@@ -55,6 +85,8 @@ namespace PalEats.ViewModels
             get { return "Serves " + Recipe.NumberOfPeople; }
             set {; }
         }
+        public ICommand FavoriteButtonClicked { get; private set; }
+
         public int IngredientsHeight
         {
             get
@@ -111,10 +143,72 @@ namespace PalEats.ViewModels
             }
         }
 
+        private async Task AddToFavoriteAsync()
+        {
+            try
+            { 
+                var favoriteService = new FavoriteServices();
+
+                var result = await favoriteService.AddFavoriteAsync(4,Recipe.DishId);
+
+                if (result > 0)
+                {
+                    App.Current.MainPage=new RecipePage(DishId);
+                }
+                else if (result == 0)
+                {
+                    await App.Current.MainPage.DisplayAlert("Error", "you already added this recipe to your favaorite", "OK");
+                }
+                else
+                {
+                    await App.Current.MainPage.DisplayAlert("Error", "add to favorite failed", "OK");
+                }
+            }
+            catch (ArgumentException ex)
+            {
+                await App.Current.MainPage.DisplayAlert("Error", ex.Message, "OK");
+            }
+            catch (Exception)
+            {
+                await App.Current.MainPage.DisplayAlert("Error", "An error occurred while adding to favorite", "OK");
+            }
+        }
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        public async Task LoadFavoriteStatusAsync()
+        {
+            try
+            {
+                var favoriteService = new FavoriteServices();
+                Selected = await favoriteService.IsSelectedAsync(4, DishId);
+
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"Error while loading recipes: {ex.Message}");
+
+                await App.Current.MainPage.DisplayAlert("Error", "An error occurred while loading recipes. Please try again later.", "OK");
+            }
+        }
+
+        public async Task RemoveFavoriteAsync()
+        {
+            try
+            {
+                 var favoriteService = new FavoriteServices();
+                 await favoriteService.RemoveFavoriteAsync(4, DishId);
+                 App.Current.MainPage = new RecipePage(DishId);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"Error while loading recipes: {ex.Message}");
+
+                await App.Current.MainPage.DisplayAlert("Error", "An error occurred while loading recipes. Please try again later.", "OK");
+            }
         }
     }
 }
