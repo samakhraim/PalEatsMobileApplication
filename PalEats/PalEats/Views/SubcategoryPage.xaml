@@ -15,11 +15,13 @@
                         <Label Text="{Binding CategoryName}" Padding="15" HorizontalOptions="StartAndExpand" FontSize="30"  TextColor="{StaticResource MainTextColor}" />
                     </Frame>
                 </StackLayout>
+   
             </StackLayout>
             <StackLayout Padding="15" Margin="0,30,0,0">
 
-                <CollectionView ItemsSource="{Binding Dishes}" SelectionMode="Single">
+                <CollectionView ItemsSource="{Binding Dishes}" SelectionMode="Single" SelectionChanged="OnCollectionViewSelectionChanged">
                     <CollectionView.ItemsLayout>
+                        
                         <GridItemsLayout Orientation="Vertical" Span="2" HorizontalItemSpacing="15" VerticalItemSpacing="15"/>
                     </CollectionView.ItemsLayout>
                     <CollectionView.ItemTemplate>

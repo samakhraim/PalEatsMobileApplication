@@ -21,6 +21,24 @@ namespace PalEats.Views
             BindingContext = viewModel;
         }
 
+        private async void OnCollectionViewSelectionChanged(object sender, SelectionChangedEventArgs e)
+         {
+             var collectionView = sender as CollectionView;
+             var selectedDish = e.CurrentSelection.FirstOrDefault() as Dish;
+
+             if (selectedDish != null)
+             {
+                 collectionView.SelectedItem = null;
+                 var recipePage = new RecipePage(selectedDish.DishId);
+                 recipePage.Title = selectedDish.DishName;
+                 await Navigation.PushAsync(recipePage);
+
+             }
+         }
+      
+
+
+
     }
 
 

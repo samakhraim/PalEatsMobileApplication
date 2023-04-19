@@ -27,6 +27,7 @@ namespace PalEats.ViewModels
             CategoryName = "main dish";
             LoadDishesAsync(categoryId);
         }
+
   
   
 
