@@ -10,11 +10,29 @@ namespace PalEats
         public App()
         {
             InitializeComponent();
+
              MainPage = new NavigationPage(new CategoryPage());
+
+
+
+            MainPage = new SignUpPage();
+
+            MainPage = new NavigationPage(new CategoryPage());
+
+
+            LoadCategoriesAsync();
+
+
         }
 
         protected override void OnStart()
         {
+
+            var rootPage = new SignUpPage();
+            var navigationPage = new NavigationPage(rootPage);
+            MainPage = navigationPage;
+
+
         }
 
         protected override void OnSleep()

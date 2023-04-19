@@ -15,6 +15,8 @@ namespace PalEats.Views
         public SignInPage()
         {
             InitializeComponent();
+            NavigationPage.SetHasNavigationBar(this, false);
         }
+      
     }
 }
