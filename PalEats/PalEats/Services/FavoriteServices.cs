@@ -93,6 +93,39 @@ namespace PalEats.Services
         }
 
 
+        public async Task<bool> RemoveFavoriteAsync(int userId,int dishId)
+        {
+            bool output = false;
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                   await connection.OpenAsync() ;
+                    SqlCommand deleteCommand = new SqlCommand("DELETE FROM [Favorite] WHERE DishId = @DishId AND UserId = @UserId", connection);
+                    deleteCommand.Parameters.AddWithValue("@DishId",dishId);
+                    deleteCommand.Parameters.AddWithValue("@UserId", userId);
+
+                     await deleteCommand.ExecuteScalarAsync();
+                    output = true;
+
+                    connection.Close();
+                }
+            }
+            catch (SqlException ex)
+            {
+                Debug.WriteLine("SQL Error adding to favorite: " + ex.Message);
+                throw new Exception("SQL Error: Unable to add to favorite. Message: " + ex.Message);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("Error adding to favorite: " + ex.Message);
+                throw new Exception(" Unable to add to favorite. Message: " + ex.Message);
+            }
+
+            return output;
+        }
+
+
     }
 
 }

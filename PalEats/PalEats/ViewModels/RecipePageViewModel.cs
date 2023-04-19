@@ -22,12 +22,18 @@ namespace PalEats.ViewModels
             DishId = selectedDish;
             Task.Run(() => this.LoadRecipesAsync()).Wait();
             Task.Run(() => this.LoadIngredientsAsync()).Wait();
-            FavoriteButtonClicked = new Command(async () => await AddToFavoriteAsync());
             Task.Run(() => this.LoadFavoriteStatusAsync()).Wait();
+            if (Selected)
+                FavoriteButtonClicked = new Command(async () => await RemoveFavoriteAsync());
+            else
+                FavoriteButtonClicked = new Command(async () => await AddToFavoriteAsync());
+
 
 
 
         }
+
+
         private bool Selected = false;
 
         public string FavoritePath
@@ -180,6 +186,22 @@ namespace PalEats.ViewModels
                 var favoriteService = new FavoriteServices();
                 Selected = await favoriteService.IsSelectedAsync(4, DishId);
 
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"Error while loading recipes: {ex.Message}");
+
+                await App.Current.MainPage.DisplayAlert("Error", "An error occurred while loading recipes. Please try again later.", "OK");
+            }
+        }
+
+        public async Task RemoveFavoriteAsync()
+        {
+            try
+            {
+                 var favoriteService = new FavoriteServices();
+                 await favoriteService.RemoveFavoriteAsync(4, DishId);
+                 App.Current.MainPage = new RecipePage(DishId);
             }
             catch (Exception ex)
             {
