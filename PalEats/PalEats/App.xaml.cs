@@ -2,11 +2,10 @@
 using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using PalEats.Views;
 using Xamarin.Essentials;
 using PalEats.Models;
 using System.Linq;
-namespace PalEats
+
 
 namespace PalEats
 {
@@ -16,11 +15,7 @@ namespace PalEats
         {
             InitializeComponent();
 
-
-            MainPage = new NavigationPage (new  SignUpPage());
-        }
-
-            MainPage = new NavigationPage(new RecipePage(6877));
+            MainPage = new NavigationPage(new SignInPage());
             MessagingCenter.Subscribe<RecipePage,ShareInfo>(this, "ShareRecipe", OnShareRecipe);
         }
         private async void OnShareRecipe(RecipePage sender, ShareInfo information)
@@ -37,7 +32,9 @@ namespace PalEats
         protected override void OnStart()
         {
 
+
         }
+
 
         protected override void OnSleep()
         {
@@ -46,7 +43,9 @@ namespace PalEats
         protected override void OnResume()
         {
         }
-    }
+
 }
 
 }
+
+

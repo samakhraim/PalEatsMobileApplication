@@ -1,16 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿
 using PalEats.Models;
 using PalEats.ViewModels;
+using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+
 namespace PalEats.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class RecipePage : ContentPage
     {
+
         RecipePageViewModel viewModel;
         public RecipePage(int id)
         {
