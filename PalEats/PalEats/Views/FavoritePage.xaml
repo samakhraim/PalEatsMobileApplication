@@ -5,6 +5,9 @@
              xmlns:components="clr-namespace:PalEats.Views" >
 
     <ContentPage.Content>
+        
+        
+        
         <StackLayout  BackgroundColor="{StaticResource backgroundColor}">
             <StackLayout HeightRequest="119" WidthRequest="360">
                 <Frame BackgroundColor="{StaticResource MainHeadandNavbarColor}" Padding="10" CornerRadius="7" HorizontalOptions="Start" VerticalOptions="Start" WidthRequest="400" HeightRequest="80">
