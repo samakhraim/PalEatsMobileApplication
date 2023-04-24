@@ -18,7 +18,7 @@ namespace PalEats.Views
         {
             InitializeComponent();
             viewModel = new FavoritePageViewModel();
-            BindingContext = viewModel;
+            BindingContext = viewModel; 
         }
         private async void BackButton_Clicked(object sender, EventArgs e)
         {
@@ -43,3 +43,7 @@ namespace PalEats.Views
         }
     }
 }
+
+
+
+

@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Threading.Tasks;
+using Xamarin.Forms;
 
 namespace PalEats.ViewModels
 {
@@ -16,40 +17,39 @@ namespace PalEats.ViewModels
         public FavoritePageViewModel()
         {
             favoritePageServices = new FavoritePageServices();
-            LoadFavoriteAsync();
-        }
-        private List<Recipe> categories = new List<Recipe>();
+            Task.Run(() => this.LoadFavoritePageAsync()).Wait();
 
-        public List<Dish> dishes
+        }
+        private List<Dish> dish = new List<Dish>();
+        public List<Dish> dishs
         {
-            get { return dishes; }
+            get { return dish; }
             set
             {
-                dishes = value;
-                OnPropertyChanged(nameof(dishes));
+                dish = value;
+                OnPropertyChanged(nameof(Dish));
             }
         }
-
-        public async Task LoadFavoriteAsync()
+        public async Task LoadFavoritePageAsync()
         {
             try
             {
-                dishes = await favoritePageServices.GetFavoriteDishesAsync();
+                dishs = await favoritePageServices.GetFavoritepageAsync();
             }
             catch (Exception ex)
             {
-                Debug.WriteLine($"Error while loading categories: {ex.Message}");
+                Debug.WriteLine($"Error while loading recipes: {ex.Message}");
+                Debug.WriteLine($"Inner exception: {ex.InnerException.Message}");
 
-                await App.Current.MainPage.DisplayAlert("Error", "An error occurred while loading categories. Please try again later.", "OK");
+                await App.Current.MainPage.DisplayAlert("Error", "An error occurred while loading recipes. Please try again later.", "OK");
             }
         }
-
-
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
+    
     }
 }
