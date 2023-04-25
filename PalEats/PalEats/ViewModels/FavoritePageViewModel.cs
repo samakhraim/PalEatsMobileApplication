@@ -21,7 +21,7 @@ namespace PalEats.ViewModels
 
         }
         private List<Dish> dish = new List<Dish>();
-        public List<Dish> dishs
+        public List<Dish> FavoriteDishes
         {
             get { return dish; }
             set
@@ -32,9 +32,10 @@ namespace PalEats.ViewModels
         }
         public async Task LoadFavoritePageAsync()
         {
+            Debug.WriteLine("labalan");
             try
             {
-                dishs = await favoritePageServices.GetFavoritepageAsync();
+                FavoriteDishes = await favoritePageServices.GetFavoritepageAsync();
             }
             catch (Exception ex)
             {
@@ -49,7 +50,5 @@ namespace PalEats.ViewModels
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-
-    
     }
 }

@@ -17,7 +17,7 @@ namespace PalEats.Services
             {
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
-                    string sqlQuery = "SELECT Dish.DishName, Dish.DishImgUrl FROM Favorite JOIN Dish ON Favorite.DishId = Dish.Id WHERE Favorite.UserId = 1";
+                    string sqlQuery = "SELECT Dish.DishId, Dish.DishName, Dish.DishImgUrl FROM Favorite JOIN Dish ON Favorite.DishId = Dish.DishId WHERE Favorite.UserId = 1";
                         SqlCommand command = new SqlCommand(sqlQuery, connection);
                     await connection.OpenAsync();
                     SqlDataReader reader = await command.ExecuteReaderAsync();
@@ -34,7 +34,7 @@ namespace PalEats.Services
                     }
                     reader.Close();
                     connection.Close();
-
+                    Console.WriteLine("maya");
                 }
             }
             catch (SqlException ex)
