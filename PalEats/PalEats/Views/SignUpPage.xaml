@@ -78,8 +78,8 @@
             HorizontalOptions="Center"
             FontSize="20"
             TextColor="{StaticResource MainTextColor}"
-        FontFamily="Lato"
             Grid.Row="5" />
+        
         <StackLayout Orientation="Horizontal"
                  HorizontalOptions="Center" 
                  Margin="0,20"
@@ -93,7 +93,7 @@
                      Aspect="AspectFill"
                      Clicked="OnGuestButtonClicked"
                      Padding="5"
-                     Margin="0"
+                    
                      BackgroundColor="Transparent"
                      CornerRadius="30" />
         </StackLayout>
