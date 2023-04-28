@@ -2,8 +2,6 @@
 using PalEats.Models;
 using PalEats.ViewModels;
 using System;
-using System.Linq;
-using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -37,17 +35,13 @@ namespace PalEats.Views
                 Ingredients = viewModel.Ingredients,
                 Preparation = viewModel.Preparation
             };
-            string ingredients = string.Join("\n", information.Ingredients.Select(i => i.Description));
-            string preparation = string.Join("\n\n", information.Preparation);
-            Share.RequestAsync(new ShareTextRequest
-            {
-                Title = "Share Recipe",
-                Text = $"PalEats represents\t\t{information.DishName}\n\n{information.Description}\n\nIngredients:\t\tFor {information.NumberOfPeople}\n{ingredients}\n\nPreperation:\n{preparation}"
-            });
+            MessagingCenter.Send(this, "ShareRecipe", information);
         }
         protected override void OnDisappearing()
         {
             base.OnDisappearing();
+
+            MessagingCenter.Unsubscribe<RecipePage, Recipe>(this, "ShareRecipe");
         }
     }
 }
