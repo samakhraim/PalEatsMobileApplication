@@ -4,6 +4,7 @@
              xmlns:local="clr-namespace:PalEats.ViewModels"
              x:Class="PalEats.Views.CategoryPage"              
              xmlns:components="clr-namespace:PalEats.Views">
+    
     <NavigationPage.TitleView>
         <Label Text="Paleats" FontSize="Large" TextColor="{StaticResource MainTextColor}"></Label>
     </NavigationPage.TitleView>

@@ -12,8 +12,8 @@ namespace PalEats.Views
         public CategoryPage()
         {
             InitializeComponent();
+            NavigationPage.SetHasBackButton(this, false);
         }
-
         private async void OnCollectionViewSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var collectionView = sender as CollectionView;
