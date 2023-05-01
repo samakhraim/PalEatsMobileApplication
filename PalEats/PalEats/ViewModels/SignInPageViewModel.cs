@@ -69,6 +69,7 @@ namespace PalEats.ViewModel
 
                 if (result > 0)
                 {
+                    ((App)App.Current).currentUser = result;
                     await Application.Current.MainPage.Navigation.PushAsync(new CategoryPage());
                 }
                 else

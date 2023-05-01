@@ -11,6 +11,8 @@ namespace PalEats
 {
     public partial class App : Application
     {
+        public int currentUser { get; set; }
+
         public App()
         {
             InitializeComponent();
