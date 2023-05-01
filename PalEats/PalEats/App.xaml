@@ -14,6 +14,11 @@
             <Color x:Key="ClickedNavbarButtonBackground">#E7C1C1</Color>
             <Color x:Key="FrameBackgroundColor">#EFDECF</Color>
 
+            <Style TargetType="NavigationPage">
+                <Setter Property="BarBackgroundColor" Value="#FBD6BC" />
+            </Style>
+
+         
         </ResourceDictionary>
     </Application.Resources>
 </Application>
