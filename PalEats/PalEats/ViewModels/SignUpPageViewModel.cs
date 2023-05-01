@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -54,7 +52,11 @@ namespace PalEats.ViewModels
                     throw new ArgumentException("Please enter an email");
                 }
 
-                if (SignUpModel.Email.IndexOf("@") == -1)
+                string emailPattern = @"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$";
+
+                bool isEmailValid = Regex.IsMatch(SignUpModel.Email, emailPattern);
+
+                if (!isEmailValid)
                 {
                     throw new ArgumentException("Please enter a valid email");
                 }
@@ -100,6 +102,8 @@ namespace PalEats.ViewModels
                 await Application.Current.MainPage.DisplayAlert("Error", "An error occurred while signing up", "OK");
             }
         }
+
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
