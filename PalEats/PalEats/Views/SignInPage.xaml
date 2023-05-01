@@ -7,32 +7,26 @@
     <ContentPage.BindingContext>
         <b:SignInViewModel />
     </ContentPage.BindingContext>
-
-    <Grid Margin="16,32,16,32" VerticalOptions="FillAndExpand">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
+    <StackLayout>
+        <Frame BackgroundColor="Transparent" Padding="0" Margin="0">
+            <Image Source="food.jpg" Aspect="Fill" HeightRequest="160"  />
+        </Frame>
+   
+    <StackLayout VerticalOptions="FillAndExpand" Padding="16,10,16,10">
+      
 
         <Label Text="Sign-In"
                FontSize="48"
                HorizontalOptions="Center"
                TextColor="{StaticResource MainTextColor}"
                FontFamily="Lato"
-               Grid.Row="0" />
+               />
 
         <Frame CornerRadius="20"
                BackgroundColor="{StaticResource FrameBackgroundColor}"
-               Padding="20,5"
+                Padding="20,5" 
                Margin="30,10"
-               HasShadow="True"
-               Grid.Row="1">
+               HasShadow="True">
             <Entry Text="{Binding SignInModel.Email}"
                    Placeholder="Email"
                    FontSize="Small" />
@@ -40,10 +34,9 @@
 
         <Frame CornerRadius="20"
                BackgroundColor="{StaticResource FrameBackgroundColor}"
-               Padding="20,5"
+               Padding="20,5" 
                Margin="30,10"
-               HasShadow="True"
-               Grid.Row="2">
+               HasShadow="True">
             <Entry Text="{Binding SignInModel.Password}"
                    Placeholder="Password"
                    IsPassword="True"
@@ -54,44 +47,35 @@
                 BackgroundColor="{StaticResource FrameBackgroundColor}"
                 TextColor="{StaticResource MainTextColor}"
                 Command="{Binding SignInCommand}"
-                HorizontalOptions="CenterAndExpand" 
-
+                HorizontalOptions="Center"
                 CornerRadius="20"
                 FontSize="20"
-                Margin="0,40,0,20"
-                Grid.Row="3" />
+                Margin="0,40,0,20" />
 
         <Label Text="Or Continue As "
                HorizontalOptions="Center"
                FontSize="20"
-               TextColor="{StaticResource MainTextColor}"
-               Grid.Row="4" />
+               TextColor="{StaticResource MainTextColor}" />
 
         <StackLayout Orientation="Horizontal"
                      HorizontalOptions="Center"
                      Margin="0,20"
-                     Spacing="20"
-                     Grid.Row="5">
-
-
+                     Spacing="20">
             <ImageButton Source="guest.png"
-             HeightRequest="62"
-             WidthRequest="80"
-             Aspect="AspectFill"
-             Command="{Binding GuestClicked}"
-             Padding="5"
-             BackgroundColor="Transparent"
-             CornerRadius="30" />
-
-
+                         HeightRequest="62"
+                         WidthRequest="80"
+                         Aspect="AspectFill"
+                         Command="{Binding GuestClicked}"
+                         Padding="5"
+                         BackgroundColor="Transparent"
+                         CornerRadius="30" />
         </StackLayout>
 
         <Label Text="Don't have an account yet? Sign up"
                HorizontalTextAlignment="Center"
                FontFamily="Lato"
                TextColor="{StaticResource MainTextColor}"
-               Margin="0,20"
-               Grid.Row="6">
+               Margin="0,20">
             <Label.FormattedText>
                 <FormattedString>
                     <Span Text="Don't have an account yet? " />
@@ -103,5 +87,9 @@
                 </FormattedString>
             </Label.FormattedText>
         </Label>
-    </Grid>
+       
+          
+
+    </StackLayout>
+    </StackLayout>
 </ContentPage>
