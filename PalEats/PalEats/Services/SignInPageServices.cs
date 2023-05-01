@@ -11,20 +11,20 @@ namespace PalEats.Services
 
         public async Task<int> AuthenticateUserAsync(SignUpModel signInModel)
         {
-            int rowsAffected = 0;
+            int userId = 0;
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 await connection.OpenAsync();
 
-                SqlCommand checkCommand = new SqlCommand("SELECT COUNT(*) FROM [Users] WHERE Email = @Email AND Password = @Password", connection);
+                SqlCommand checkCommand = new SqlCommand("SELECT UserId FROM [Users] WHERE Email = @Email AND Password = @Password", connection);
                 checkCommand.Parameters.AddWithValue("@Email", signInModel.Email);
                 checkCommand.Parameters.AddWithValue("@Password", signInModel.Password);
 
-                rowsAffected = (int)await checkCommand.ExecuteScalarAsync();
+                userId = (int)await checkCommand.ExecuteScalarAsync();
             }
 
-            return rowsAffected;
+            return userId;
         }
     }
 }

@@ -24,6 +24,7 @@ namespace PalEats.Views
         }
         private async void OnGuestButtonClicked(object sender, EventArgs e)
         {
+            ((App)App.Current).currentUser = 0;
             await Navigation.PushAsync(new CategoryPage());
         }
     }
