@@ -26,11 +26,11 @@
                     <StackLayout  Padding="0,15,0,0"  >
                         <StackLayout Orientation="Horizontal"  Spacing="30" HeightRequest="63" WidthRequest="277" Margin="50,0,50,0">
                             <StackLayout Orientation="Vertical" Spacing="5">
-                                <ImageButton BackgroundColor="{StaticResource backgroundColor}"  Source="clock.png" Aspect="AspectFit" WidthRequest="40" HeightRequest="40"/>
+                                <Image BackgroundColor="{StaticResource backgroundColor}"  Source="clock.png" Aspect="AspectFit" WidthRequest="40" HeightRequest="40"/>
                                 <Label Text="{Binding Recipe.DueTime}" FontSize="Small" HorizontalTextAlignment="Center"/>
                             </StackLayout>
                             <StackLayout Orientation="Vertical" Spacing="5">
-                                <ImageButton BackgroundColor="{StaticResource backgroundColor}"   Source="fire.png" Aspect="AspectFit" HeightRequest="40" WidthRequest="50"/>
+                                <Image BackgroundColor="{StaticResource backgroundColor}"   Source="fire.png" Aspect="AspectFit" HeightRequest="40" WidthRequest="50"/>
                                 <Label Text="{Binding Recipe.Calories}" FontSize="Small" HorizontalTextAlignment="Center"/>
                             </StackLayout>
                             <StackLayout Orientation="Vertical" Spacing="5" >
