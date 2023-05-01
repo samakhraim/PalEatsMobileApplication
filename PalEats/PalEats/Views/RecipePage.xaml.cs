@@ -11,6 +11,7 @@ namespace PalEats.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class RecipePage : ContentPage
+
     {
 
         RecipePageViewModel viewModel;

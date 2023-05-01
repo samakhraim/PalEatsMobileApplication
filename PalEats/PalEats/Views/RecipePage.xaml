@@ -2,9 +2,10 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:components="clr-namespace:PalEats.Views"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="PalEats.Views.RecipePage" 
-             NavigationPage.HasNavigationBar="False" >
-
+             x:Class="PalEats.Views.RecipePage"  >
+    <NavigationPage.TitleView>
+        <Label Text="{Binding Recipe.DishName}" FontSize="Large" TextColor="{StaticResource MainTextColor}"></Label>
+    </NavigationPage.TitleView>
     <ContentPage.Content>
         <Grid>
             <Grid.RowDefinitions>
@@ -15,13 +16,7 @@
                 <StackLayout BackgroundColor="{StaticResource backgroundColor}" >
                     <Grid BackgroundColor="{StaticResource RecipeHeaderColor}">
                         <Image Source="{Binding Recipe.DishImgUrl }" Aspect="AspectFill" HeightRequest="300"/>
-                        <Frame BackgroundColor="{StaticResource RecipeHeaderColor}" Opacity=".65"  Padding="10" CornerRadius="20"
-                       HorizontalOptions="Start" VerticalOptions="Start" WidthRequest="400" HeightRequest="80">
-                            <Grid>
-                                <ImageButton Grid.Column="0" Source="arrow.png" WidthRequest="22" BackgroundColor="{StaticResource RecipeHeaderColor}"  HorizontalOptions="StartAndExpand" Clicked="BackButton_Clicked" Margin="25"/>
-                                <Label Text="{Binding Recipe.DishName}" TextColor="{StaticResource MainTextColor}" HorizontalOptions="CenterAndExpand" FontSize="30" Margin="21"/>
-                            </Grid>
-                        </Frame>
+                       
                     </Grid>
                     <StackLayout  Padding="0,15,0,0"  >
                         <StackLayout Orientation="Horizontal"  Spacing="30" HeightRequest="63" WidthRequest="277" Margin="50,0,50,0">

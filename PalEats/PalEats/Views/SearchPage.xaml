@@ -3,19 +3,19 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:components="clr-namespace:PalEats.Views"
              x:Class="PalEats.Views.SearchPage"  
-             NavigationPage.HasNavigationBar="False"
+                          NavigationPage.HasNavigationBar="False"               
              xmlns:local="clr-namespace:PalEats.ViewModels">
     <ContentPage.BindingContext>
         <local:SearchPageViewModel/>
     </ContentPage.BindingContext>
+   
     
     <ContentPage.Content>
         <StackLayout BackgroundColor="{StaticResource backgroundColor}">
-            <ImageButton  Source="arrow.png" WidthRequest="10" HeightRequest="24" Margin="25" BackgroundColor="{StaticResource backgroundColor}" HorizontalOptions="StartAndExpand" Clicked="BackButton_Clicked" />
-            <Label Text="searchPage" BackgroundColor="{StaticResource backgroundColor}" HorizontalOptions="Center"  FontSize="40"  TextColor="{StaticResource MainTextColor}" Margin="30" />
             <StackLayout>
                 <SearchBar Placeholder="Search"
                        Text="{Binding SearchText}"
+                           
                        SearchCommand="{Binding SearchCommand}"
                        SearchCommandParameter="{Binding SearchText}"/>
 
