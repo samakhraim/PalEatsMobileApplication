@@ -151,7 +151,7 @@ namespace PalEats.ViewModels
 
                 if (currentUser == 0)
                 {
-                    bool answer = await App.Current.MainPage.DisplayAlert("Error", "You have to sign in first to add this recipe to your favorites. Do you want to sign in?", "Yes", "No");
+                    bool answer = await App.Current.MainPage.DisplayAlert("Add To Favorite", "You have to sign in first to add this recipe to your favorites. Do you want to sign in?", "Yes", "No");
                     if (answer)
                     {
                         await App.Current.MainPage.Navigation.PushAsync(new SignInPage());
