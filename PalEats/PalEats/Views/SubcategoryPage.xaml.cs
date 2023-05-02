@@ -35,14 +35,7 @@ namespace PalEats.Views
 
              }
          }
-      
-
-
-
     }
-
-
-
 
 }
 
