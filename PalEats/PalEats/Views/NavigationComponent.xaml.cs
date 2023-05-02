@@ -15,7 +15,6 @@ namespace PalEats.Views
         private async void Button_Clicked(object sender, EventArgs e)
         {
 
-            await Navigation.PushAsync(new SearchPage());
 
             await Navigation.PushModalAsync(new NavigationPage(new SearchPage()));
 
@@ -25,7 +24,6 @@ namespace PalEats.Views
         private async void Button_Clicked_1(object sender, EventArgs e)
         {
 
-            await Navigation.PushAsync(new CategoryPage());
             await Navigation.PushModalAsync(new NavigationPage(new CategoryPage()));
 
 
@@ -34,9 +32,11 @@ namespace PalEats.Views
         private async void Button_Clicked_2(object sender, EventArgs e)
         {
 
+
             if (((App)Application.Current).currentUser == 0)
             {
                 bool answer = await Application.Current.MainPage.DisplayAlert("Favorite Page", "You are currently a guest. Do you want to sign in?", "Yes", "No");
+
                 if (answer)
                 {
                     await Navigation.PushAsync(new SignInPage());
@@ -44,12 +44,10 @@ namespace PalEats.Views
             }
             else
             {
-                await Navigation.PushAsync(new FavoritePage());
+                await Navigation.PushModalAsync(new NavigationPage(new FavoritePage()));
             }
-
-            await Navigation.PushModalAsync(new NavigationPage( new FavoritePage()));
-
-
         }
+
+
     }
 }
