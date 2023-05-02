@@ -14,8 +14,12 @@
   
     <ContentPage.Content>
         <StackLayout BackgroundColor="{StaticResource backgroundColor }">
-           
-            <StackLayout Padding="15" Margin="0,30,0,0">
+            <StackLayout Orientation="Horizontal" Margin="0,15,0,0">
+                <BoxView HorizontalOptions="Start" VerticalOptions="Center" HeightRequest="1" WidthRequest="40" Color="{StaticResource MainTextColor}"/>
+                <Label Text="Discover &#x0a;Palestinian Recipes" FontSize="Title" TextColor="{StaticResource MainTextColor}" FontAttributes="Bold"/>
+                <BoxView HorizontalOptions="FillAndExpand" VerticalOptions="Center" HeightRequest="1"  Color="{StaticResource MainTextColor}"/>
+            </StackLayout>
+            <StackLayout Padding="15">
 
                 <CollectionView ItemsSource="{Binding Categories}" SelectionMode="Single" SelectionChanged="OnCollectionViewSelectionChanged">
                     <CollectionView.ItemsLayout>
