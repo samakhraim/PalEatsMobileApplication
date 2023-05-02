@@ -83,7 +83,7 @@ namespace PalEats.ViewModel
             }
             catch (Exception)
             {
-                await Application.Current.MainPage.DisplayAlert("Error", "An unexpected error occurred", "OK");
+                await Application.Current.MainPage.DisplayAlert("Error", "Wrong Password ", "OK");
             }
         }
 
