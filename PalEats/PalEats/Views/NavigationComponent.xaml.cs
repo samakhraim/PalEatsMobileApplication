@@ -18,19 +18,19 @@ namespace PalEats.Views
         }
         private async void Button_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushModalAsync(new NavigationPage(new SearchPage()));
+            await Navigation.PushAsync(new SearchPage());
 
         }
 
         private async void Button_Clicked_1(object sender, EventArgs e)
         {
-            await Navigation.PushModalAsync(new NavigationPage(new CategoryPage()));
+            await Navigation.PushAsync(new CategoryPage());
 
         }
 
         private async void Button_Clicked_2(object sender, EventArgs e)
         {
-            await Navigation.PushModalAsync(new NavigationPage(new FavoritePage()));
+            await Navigation.PushAsync(new FavoritePage());
 
         }
     }
