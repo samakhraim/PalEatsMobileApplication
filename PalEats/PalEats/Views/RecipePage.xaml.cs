@@ -22,7 +22,10 @@ namespace PalEats.Views
             BindingContext = viewModel;
 
         }
-       
+        private async void BackButton_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PopAsync();
+        }
 
         private void ShareButton_Clicked(object sender, EventArgs e)
         {

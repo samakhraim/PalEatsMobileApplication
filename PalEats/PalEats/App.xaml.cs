@@ -17,14 +17,16 @@ namespace PalEats
         {
             InitializeComponent();
 
+            MainPage = new NavigationPage(new SignInPage());
         }
 
         protected override void OnStart()
         {
-            var newNavigation = new NavigationPage(new SignInPage());
-            MainPage = newNavigation;
+
 
         }
+
+
         protected override void OnSleep()
         {
 
@@ -33,7 +35,7 @@ namespace PalEats
         {
         }
 
-    }
+}
 
 }
 

@@ -20,7 +20,10 @@ namespace PalEats.Views
             viewModel = new FavoritePageViewModel();
             BindingContext = viewModel; 
         }
-       
+        private async void BackButton_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PopAsync();
+        }
 
         private async void OnCollectionViewSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
