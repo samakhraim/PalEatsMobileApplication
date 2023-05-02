@@ -15,7 +15,7 @@
             <StackLayout>
                 <SearchBar Placeholder="Search"
                        Text="{Binding SearchText}"
-                           
+                           FontFamily="Lato-Black"
                        SearchCommand="{Binding SearchCommand}"
                        SearchCommandParameter="{Binding SearchText}"/>
 

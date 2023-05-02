@@ -5,7 +5,7 @@
              xmlns:components="clr-namespace:PalEats.Views">
     
     <NavigationPage.TitleView>
-        <Label Text="{Binding CategoryName}"  FontSize="Large" TextColor="{StaticResource MainTextColor}"></Label>
+        <Label  Text="{Binding CategoryName}"  FontSize="Large" TextColor="{StaticResource MainTextColor}"></Label>
     </NavigationPage.TitleView>
 
     <ContentPage.Content>
