@@ -16,10 +16,10 @@
       
 
         <Label Text="Sign-In"
+           
                FontSize="48"
                HorizontalOptions="Center"
                TextColor="{StaticResource MainTextColor}"
-               FontFamily="Lato"
                />
 
         <Frame CornerRadius="20"
@@ -27,8 +27,9 @@
                 Padding="20,5" 
                Margin="30,10"
                HasShadow="True">
-            <Entry Text="{Binding SignInModel.Email}"
+                <Entry Text="{Binding SignInModel.Email}"
                    Placeholder="Email"
+                       FontFamily="Lato-Black"
                    FontSize="Small" />
         </Frame>
 
@@ -39,11 +40,13 @@
                HasShadow="True">
             <Entry Text="{Binding SignInModel.Password}"
                    Placeholder="Password"
+                  FontFamily="Lato-Black"
                    IsPassword="True"
                    FontSize="Small" />
         </Frame>
 
         <Button Text="Sign In"
+                FontFamily="Lato-Black"
                 BackgroundColor="{StaticResource FrameBackgroundColor}"
                 TextColor="{StaticResource MainTextColor}"
                 Command="{Binding SignInCommand}"
@@ -68,12 +71,12 @@
                          Command="{Binding GuestClicked}"
                          Padding="5"
                          BackgroundColor="Transparent"
-                         CornerRadius="30" />
+                         CornerRadius="30"
+                         />
         </StackLayout>
 
         <Label Text="Don't have an account yet? Sign up"
                HorizontalTextAlignment="Center"
-               FontFamily="Lato"
                TextColor="{StaticResource MainTextColor}"
                Margin="0,20">
             <Label.FormattedText>

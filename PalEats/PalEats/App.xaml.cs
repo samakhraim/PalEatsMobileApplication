@@ -6,7 +6,7 @@ using Xamarin.Essentials;
 using PalEats.Models;
 using System.Linq;
 
-
+[assembly:ExportFont("Lato-Black.ttf", Alias = "Lato-Black")]
 namespace PalEats
 {
     public partial class App : Application

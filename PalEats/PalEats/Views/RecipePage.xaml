@@ -16,32 +16,31 @@
                 <StackLayout BackgroundColor="{StaticResource backgroundColor}" >
                     <Grid BackgroundColor="{StaticResource RecipeHeaderColor}">
                         <Image Source="{Binding Recipe.DishImgUrl }" Aspect="AspectFill" HeightRequest="300"/>
-                       
                     </Grid>
                     <StackLayout  Padding="0,15,0,0"  >
                         <StackLayout Orientation="Horizontal"  Spacing="30" HeightRequest="63" WidthRequest="277" Margin="50,0,50,0">
                             <StackLayout Orientation="Vertical" Spacing="5">
                                 <Image BackgroundColor="{StaticResource backgroundColor}"  Source="clock.png" Aspect="AspectFit" WidthRequest="40" HeightRequest="40"/>
-                                <Label Text="{Binding Recipe.DueTime}" FontSize="Small" HorizontalTextAlignment="Center"/>
+                                <Label Text="{Binding Recipe.DueTime}" FontFamily="Lato-Black" FontSize="Small" HorizontalTextAlignment="Center"/>
                             </StackLayout>
                             <StackLayout Orientation="Vertical" Spacing="5">
                                 <Image BackgroundColor="{StaticResource backgroundColor}"   Source="fire.png" Aspect="AspectFit" HeightRequest="40" WidthRequest="50"/>
-                                <Label Text="{Binding Recipe.Calories}" FontSize="Small" HorizontalTextAlignment="Center"/>
+                                <Label Text="{Binding Recipe.Calories}" FontFamily="Lato-Black" FontSize="Small" HorizontalTextAlignment="Center"/>
                             </StackLayout>
                             <StackLayout Orientation="Vertical" Spacing="5" >
                                 <ImageButton BackgroundColor="{StaticResource backgroundColor}" Command="{Binding FavoriteButtonClicked}" Source="{Binding FavoritePath}" Aspect="AspectFit" HeightRequest="40" WidthRequest="40" />
-                                <Label Text="Favorite" FontSize="Small" HorizontalTextAlignment="Center"/>
+                                <Label FontFamily="Lato-Black" Text="Favorite" FontSize="Small" HorizontalTextAlignment="Center"/>
 
                             </StackLayout>
                             <StackLayout Orientation="Vertical" Spacing="5" >
                                 <ImageButton BackgroundColor="{StaticResource backgroundColor}" Clicked="ShareButton_Clicked"  Source="share.png" Aspect="AspectFit" WidthRequest="28.67" HeightRequest="40" />
-                                <Label Text="Share " FontSize="Small" HorizontalTextAlignment="Center"/>
+                                <Label Text="Share " FontFamily="Lato-Black" FontSize="Small" HorizontalTextAlignment="Center"/>
                             </StackLayout>
                         </StackLayout>
                         <StackLayout>
 
-                            <Label  Text="Recipe Description:" Margin="5,15,0,0" FontSize="20" FontAttributes="Bold" TextColor="{StaticResource MainTextColor}"/>
-                            <Label Text="{Binding Recipe.Description}" Margin="10,0,0,10"  FontSize="16" TextColor="{StaticResource MainTextColor}"/>
+                            <Label FontFamily="Lato-Black"  Text="Recipe Description:" Margin="5,15,0,0" FontSize="20" FontAttributes="Bold" TextColor="{StaticResource MainTextColor}"/>
+                            <Label FontFamily="Lato-Black" Text="{Binding Recipe.Description}" Margin="10,0,0,10"  FontSize="16" TextColor="{StaticResource MainTextColor}"/>
                         </StackLayout>
                         <StackLayout>
                             <Grid >
@@ -60,9 +59,9 @@
                                 </CollectionView.ItemTemplate>
                             </CollectionView>
                         </StackLayout>
-                        <StackLayout>
+                        <StackLayout >
                             <Label FontSize="20" TextColor="{StaticResource MainTextColor}" FontAttributes="Bold" Text="Preparation: " Margin="5,0,0,0" />
-                            <CollectionView ItemsSource="{Binding Preparation}"  Margin="10,0,0,0"  >
+                            <CollectionView ItemsSource="{Binding Preparation}"   Margin="10,0,0,0"   >
                                 <CollectionView.ItemTemplate>
                                     <DataTemplate>
                                         <StackLayout >
