@@ -35,12 +35,12 @@
                                    RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,Property=Height}"
                                    
                                    />
-                                    <Frame BackgroundColor="DarkGray"
+                                    <Frame BackgroundColor="#907A68"
                                     Opacity="0.4"
                                     RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width}"
                                     RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,Property=Height}" />
 
-                                    <Label Text="{Binding CategoryName}" HorizontalOptions="Center" FontAttributes="Bold" VerticalOptions="Center" RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width}" RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,Property=Height}" TextColor="White" FontSize="Large"/>
+                                    <Label Padding="5" Text="{Binding CategoryName}" HorizontalOptions="CenterAndExpand" FontAttributes="Bold" VerticalOptions="EndAndExpand" RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width}" RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,Property=Height}" TextColor="White" FontSize="Large"/>
                                         
 
                                 </RelativeLayout>
