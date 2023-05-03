@@ -3,40 +3,36 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="PalEats.Views.SignUpPage"
              xmlns:b="clr-namespace:PalEats.ViewModels"
-             BackgroundColor="{StaticResource backgroundColor}">
-
+             BackgroundColor="{StaticResource backgroundColor}"
+             >
 
     <ContentPage.BindingContext>
         <b:SignUpPageViewModel/>
     </ContentPage.BindingContext>
+    <StackLayout>
+        <Frame BackgroundColor="Transparent" Padding="0" Margin="0">
+            <Image Source="pefood.jpg" Aspect="Fill" HeightRequest="160"  />
+        </Frame>
+   
+    
+    <StackLayout Padding="16,10,16,10" VerticalOptions="FillAndExpand">
 
-    <Grid Margin="16,32,16,32" VerticalOptions="FillAndExpand">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
+        
 
-        <Label Text="Sign-Up"
-               FontSize="48"
+        <Label Text="sign up"
+               FontSize="40"
                HorizontalOptions="Center"
                TextColor="{StaticResource MainTextColor}"
-               FontFamily="Lato"
-               Grid.Row="0" />
+               FontFamily="Lato-Black"               />
 
         <Frame CornerRadius="20"
                BackgroundColor="{StaticResource FrameBackgroundColor}"
                Padding="20,5" 
                Margin="30,10"
-               HasShadow="True"
-               Grid.Row="1">
+               HasShadow="True">
             <Entry Text="{Binding SignUpModel.Email}" 
                    Placeholder="Email" 
+                   FontFamily="Lato-Black"
                    FontSize="Small" />
         </Frame>
 
@@ -44,11 +40,11 @@
                BackgroundColor="{StaticResource FrameBackgroundColor}"
                Padding="20,5" 
                Margin="30,10"
-               HasShadow="True"
-               Grid.Row="2">
+               HasShadow="True">
             <Entry Text="{Binding SignUpModel.Password}" 
                    Placeholder="Password" 
                    IsPassword="True" 
+                   FontFamily="Lato-Black"
                    FontSize="Small" />
         </Frame>
 
@@ -56,53 +52,48 @@
                BackgroundColor="{StaticResource FrameBackgroundColor}"
                Padding="20,5" 
                Margin="30,10" 
-               HasShadow="True"
-               Grid.Row="3">
+               HasShadow="True">
             <Entry Text="{Binding ConfirmPassword}" 
                    Placeholder="Confirm Password" 
                    FontSize="Small"
+                   FontFamily="Lato-Black"
                    IsPassword="True" />
         </Frame>
 
         <Button Text="Sign Up" 
+                FontSize="20"
                 BackgroundColor="{StaticResource FrameBackgroundColor}"
                 TextColor="{StaticResource MainTextColor}"
                 Command="{Binding SignUpButtonClicked}"
                 HorizontalOptions="CenterAndExpand" 
                 CornerRadius="20"
-                FontSize="20"
-                Margin="0,40,0,20"
-                Grid.Row="4" />
+         
+                Margin="0,40,0,20" />
 
         <Label Text="Or Continue As "
             HorizontalOptions="Center"
             FontSize="20"
-            TextColor="{StaticResource MainTextColor}"
-        FontFamily="Lato"
-            Grid.Row="5" />
+            TextColor="{StaticResource MainTextColor}" />
+
         <StackLayout Orientation="Horizontal"
-                 HorizontalOptions="Center" 
-                 Margin="0,20"
-                 Spacing="20"
-                 Grid.Row="6">
-          
+                     HorizontalOptions="Center" 
+                     Margin="0,20"
+                     Spacing="20">
 
             <ImageButton Source="guest.png"
-                     HeightRequest="62"
-                     WidthRequest="80"
-                     Aspect="AspectFill"
-                     Clicked="OnGuestButtonClicked"
-                     Padding="5"
-                     Margin="0"
-                     BackgroundColor="Transparent"
-                     CornerRadius="30" />
+                         HeightRequest="62"
+                         WidthRequest="80"
+                         Aspect="AspectFill"
+                         Clicked="OnGuestButtonClicked"
+                         Padding="5"
+                         BackgroundColor="Transparent"
+                         CornerRadius="30" />
         </StackLayout>
 
         <Label Text="Already have an account? Sign in"
            HorizontalTextAlignment="Center"
-           FontFamily="Lato"
            TextColor="{StaticResource MainTextColor}"
-           Grid.Row="7">
+           Margin="0,20,0,32">
             <Label.FormattedText>
                 <FormattedString>
                     <Span Text="Already have an account? " />
@@ -110,9 +101,11 @@
                         <Span.GestureRecognizers>
                             <TapGestureRecognizer Tapped="OnSignInTapped" />
                         </Span.GestureRecognizers>
-                    </Span>
+                        </Span>
                 </FormattedString>
             </Label.FormattedText>
         </Label>
-    </Grid>
+    </StackLayout>
+    </StackLayout>
 </ContentPage>
+

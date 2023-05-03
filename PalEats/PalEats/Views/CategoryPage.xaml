@@ -2,24 +2,24 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:PalEats.ViewModels"
-             x:Class="PalEats.Views.CategoryPage"
-             NavigationPage.HasNavigationBar="False"               
+             x:Class="PalEats.Views.CategoryPage"              
              xmlns:components="clr-namespace:PalEats.Views">
+    <NavigationPage.TitleView>
+        <Label Text="Paleats"  FontSize="Large" TextColor="{StaticResource MainTextColor}"></Label>
+    </NavigationPage.TitleView>
 
     <ContentPage.BindingContext>
         <local:CategoryPageViewModel/>
     </ContentPage.BindingContext>
-
+  
     <ContentPage.Content>
         <StackLayout BackgroundColor="{StaticResource backgroundColor }">
-            <StackLayout>
-                <StackLayout  HeightRequest="119" WidthRequest="360">
-                    <Frame  BackgroundColor="{StaticResource MainHeadandNavbarColor}" Padding="10" CornerRadius="7" WidthRequest="400" HeightRequest="80">
-                        <Label Text="PalEats" Padding="15" HorizontalOptions="StartAndExpand" FontSize="30"  TextColor="{StaticResource MainTextColor}" />
-                    </Frame>
-                </StackLayout>
+            <StackLayout Orientation="Horizontal" Margin="0,15,0,0">
+                <BoxView HorizontalOptions="Start" VerticalOptions="Center" HeightRequest="1" WidthRequest="40" Color="{StaticResource MainTextColor}"/>
+                <Label Text="Discover &#x0a;Palestinian Recipes" FontSize="Title" TextColor="{StaticResource MainTextColor}" FontAttributes="Bold"/>
+                <BoxView HorizontalOptions="FillAndExpand" VerticalOptions="Center" HeightRequest="1"  Color="{StaticResource MainTextColor}"/>
             </StackLayout>
-            <StackLayout Padding="15" Margin="0,30,0,0">
+            <StackLayout Padding="15">
 
                 <CollectionView ItemsSource="{Binding Categories}" SelectionMode="Single" SelectionChanged="OnCollectionViewSelectionChanged">
                     <CollectionView.ItemsLayout>
@@ -35,14 +35,13 @@
                                    RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,Property=Height}"
                                    
                                    />
+                                    <Frame BackgroundColor="#907A68"
+                                    Opacity="0.4"
+                                    RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width}"
+                                    RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,Property=Height}" />
 
-                                    <Grid RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width}"
-                                      RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,Property=Height}"
-                                      >
-                                        <Frame HeightRequest="60" VerticalOptions="End" BackgroundColor="#F9EFE3" Opacity="0.6" CornerRadius="20">
-                                            <Label Text="{Binding CategoryName}" HorizontalOptions="Center" FontAttributes="Bold" VerticalOptions="Center" TextColor="#543214" FontSize="Large"/>
-                                        </Frame>
-                                    </Grid>
+                                    <Label Padding="5" Text="{Binding CategoryName}" HorizontalOptions="CenterAndExpand" FontAttributes="Bold" VerticalOptions="EndAndExpand" RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width}" RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,Property=Height}" TextColor="White" FontSize="Large"/>
+                                        
 
                                 </RelativeLayout>
                             </Frame>

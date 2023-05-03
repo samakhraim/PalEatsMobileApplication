@@ -6,27 +6,18 @@ using Xamarin.Essentials;
 using PalEats.Models;
 using System.Linq;
 
-
+[assembly:ExportFont("Lato-Black.ttf", Alias = "Lato-Black")]
 namespace PalEats
 {
     public partial class App : Application
     {
+        public int currentUser { get; set; }
+
         public App()
         {
             InitializeComponent();
 
-            MainPage = new NavigationPage(new FavoritePage());
-            MessagingCenter.Subscribe<RecipePage,ShareInfo>(this, "ShareRecipe", OnShareRecipe);
-        }
-        private async void OnShareRecipe(RecipePage sender, ShareInfo information)
-        {
-            string ingredients = string.Join("\n", information.Ingredients.Select(i => i.Description));
-            string preparation = string.Join("\n\n", information.Preparation);
-            await Share.RequestAsync(new ShareTextRequest
-            {
-                Title = "Share Recipe",
-                Text = $"PalEats represents\t\t{information.DishName}\n\n{information.Description}\n\nIngredients:\t\tFor {information.NumberOfPeople}\n{ingredients}\n\nPreperation:\n{preparation}"
-            });
+            MainPage = new NavigationPage(new SignInPage());
         }
 
         protected override void OnStart()

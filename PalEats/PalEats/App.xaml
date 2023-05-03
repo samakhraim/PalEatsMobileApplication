@@ -14,6 +14,26 @@
             <Color x:Key="ClickedNavbarButtonBackground">#E7C1C1</Color>
             <Color x:Key="FrameBackgroundColor">#EFDECF</Color>
 
+            <Style TargetType="NavigationPage">
+                <Setter Property="BarBackgroundColor" Value="#FBD6BC" />
+            </Style>
+
+            <Style TargetType="Label">
+                <Setter Property="FontFamily" Value="Lato-Black" />
+            </Style>
+            
+            <Style TargetType="Frame">
+                <Setter Property="Content">
+                    <Setter.Value>
+                        <Label FontFamily="Lato-Black" />
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            
+           
+
+            
+            
         </ResourceDictionary>
     </Application.Resources>
 </Application>

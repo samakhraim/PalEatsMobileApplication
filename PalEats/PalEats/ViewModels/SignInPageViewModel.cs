@@ -15,10 +15,13 @@ namespace PalEats.ViewModel
     {
         private SignInServices signInService;
         public ICommand GuestClicked { get; }
+        public ICommand SignInCommand { get; }
+        public ICommand OnSignUpTapped{ get;  }
+
         public SignInViewModel()
         {
             SignInCommand = new Command(async () => await SignInAsync());
-            OnSignUpTappedCommand = new Command(async () => await Application.Current.MainPage.Navigation.PushAsync(new SignUpPage()));
+            OnSignUpTapped = new Command(async () => await Application.Current.MainPage.Navigation.PushAsync(new SignUpPage()));
             signInService = new SignInServices();
             GuestClicked = new Command(async () => await OnGuestClicked());
 
@@ -39,9 +42,7 @@ namespace PalEats.ViewModel
             }
         }
 
-        public ICommand SignInCommand { get; private set; }
 
-        public ICommand OnSignUpTappedCommand { get; private set; }
 
         private async Task SignInAsync()
         {
@@ -68,6 +69,7 @@ namespace PalEats.ViewModel
 
                 if (result > 0)
                 {
+                    ((App)App.Current).currentUser = result;
                     await Application.Current.MainPage.Navigation.PushAsync(new CategoryPage());
                 }
                 else
@@ -81,7 +83,7 @@ namespace PalEats.ViewModel
             }
             catch (Exception)
             {
-                await Application.Current.MainPage.DisplayAlert("Error", "An unexpected error occurred", "OK");
+                await Application.Current.MainPage.DisplayAlert("Error", "Wrong Password ", "OK");
             }
         }
 

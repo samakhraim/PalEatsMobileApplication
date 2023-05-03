@@ -146,22 +146,35 @@ namespace PalEats.ViewModels
         private async Task AddToFavoriteAsync()
         {
             try
-            { 
-                var favoriteService = new FavoriteServices();
+            {
+                var currentUser = ((App)App.Current).currentUser;
 
-                var result = await favoriteService.AddFavoriteAsync(4,Recipe.DishId);
-
-                if (result > 0)
+                if (currentUser == 0)
                 {
-                    App.Current.MainPage=new RecipePage(DishId);
-                }
-                else if (result == 0)
-                {
-                    await App.Current.MainPage.DisplayAlert("Error", "you already added this recipe to your favaorite", "OK");
+                    bool answer = await App.Current.MainPage.DisplayAlert("Add To Favorite", "You have to sign in first to add this recipe to your favorites. Do you want to sign in?", "Yes", "No");
+                    if (answer)
+                    {
+                        await App.Current.MainPage.Navigation.PushAsync(new SignInPage());
+                    }
                 }
                 else
                 {
-                    await App.Current.MainPage.DisplayAlert("Error", "add to favorite failed", "OK");
+                    var favoriteService = new FavoriteServices();
+
+                    var result = await favoriteService.AddFavoriteAsync(currentUser, Recipe.DishId);
+
+                    if (result > 0)
+                    {
+                        App.Current.MainPage = new RecipePage(DishId);
+                    }
+                    else if (result == 0)
+                    {
+                        await App.Current.MainPage.DisplayAlert("Error", "You have already added this recipe to your favorites.", "OK");
+                    }
+                    else
+                    {
+                        await App.Current.MainPage.DisplayAlert("Error", "Failed to add to favorites.", "OK");
+                    }
                 }
             }
             catch (ArgumentException ex)
@@ -170,9 +183,10 @@ namespace PalEats.ViewModels
             }
             catch (Exception)
             {
-                await App.Current.MainPage.DisplayAlert("Error", "An error occurred while adding to favorite", "OK");
+                await App.Current.MainPage.DisplayAlert("Error", "An error occurred while adding to favorites.", "OK");
             }
         }
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged(string propertyName)
         {
@@ -184,7 +198,7 @@ namespace PalEats.ViewModels
             try
             {
                 var favoriteService = new FavoriteServices();
-                Selected = await favoriteService.IsSelectedAsync(4, DishId);
+                Selected = await favoriteService.IsSelectedAsync(((App)App.Current).currentUser, DishId);
 
             }
             catch (Exception ex)
@@ -200,7 +214,7 @@ namespace PalEats.ViewModels
             try
             {
                  var favoriteService = new FavoriteServices();
-                 await favoriteService.RemoveFavoriteAsync(4, DishId);
+                 await favoriteService.RemoveFavoriteAsync(((App)App.Current).currentUser, DishId);
                  App.Current.MainPage = new RecipePage(DishId);
             }
             catch (Exception ex)

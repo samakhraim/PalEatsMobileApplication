@@ -2,6 +2,8 @@
 using PalEats.Models;
 using PalEats.ViewModels;
 using System;
+using System.Linq;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -9,6 +11,7 @@ namespace PalEats.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class RecipePage : ContentPage
+
     {
 
         RecipePageViewModel viewModel;
@@ -19,10 +22,7 @@ namespace PalEats.Views
             BindingContext = viewModel;
 
         }
-        private async void BackButton_Clicked(object sender, EventArgs e)
-        {
-            await Navigation.PopAsync();
-        }
+    
 
         private void ShareButton_Clicked(object sender, EventArgs e)
         {
@@ -35,7 +35,13 @@ namespace PalEats.Views
                 Ingredients = viewModel.Ingredients,
                 Preparation = viewModel.Preparation
             };
-            MessagingCenter.Send(this, "ShareRecipe", information);
+            string ingredients = string.Join("\n", information.Ingredients.Select(i => i.Description));
+            string preparation = string.Join("\n\n", information.Preparation);
+            Share.RequestAsync(new ShareTextRequest
+            {
+                Title = "Share Recipe",
+                Text = $"PalEats represents\t\t{information.DishName}\n\n{information.Description}\n\nIngredients:\t\tFor {information.NumberOfPeople}\n{ingredients}\n\nPreperation:\n{preparation}"
+            });
         }
         protected override void OnDisappearing()
         {
