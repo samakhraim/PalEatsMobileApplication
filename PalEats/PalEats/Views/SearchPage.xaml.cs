@@ -29,9 +29,6 @@ namespace PalEats.Views
                 await Navigation.PushAsync(new RecipePage(selectedDish.DishId));
             }
         }
-        private async void BackButton_Clicked(object sender, EventArgs e)
-        {
-            await Navigation.PopAsync();
-        }
+      
     }
 }
