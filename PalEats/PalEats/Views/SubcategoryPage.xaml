@@ -29,8 +29,8 @@
                                    RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,Property=Height}"
                                    
                                    />
-                                    <Frame BackgroundColor="DarkGray" Opacity="0.4" CornerRadius="20" RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width}"   RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,Property=Height}" />
-                                    <Label Text="{Binding DishName}" HorizontalOptions="Center" FontAttributes="Bold" VerticalOptions="Center" RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width}" RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,Property=Height}" TextColor="White" FontSize="Large"/>
+                                    <Frame BackgroundColor="#907A68" Opacity="0.4" CornerRadius="20" RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width}"   RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,Property=Height}" />
+                                    <Label   Padding="6"  Text="{Binding DishName}"  HorizontalOptions="CenterAndExpand" FontAttributes="Bold" VerticalOptions="EndAndExpand" RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width}" RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,Property=Height}" TextColor="White" FontSize="Large"/>
 
 
                                 </RelativeLayout>
