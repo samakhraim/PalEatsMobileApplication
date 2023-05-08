@@ -165,7 +165,9 @@ namespace PalEats.ViewModels
 
                     if (result > 0)
                     {
-                        App.Current.MainPage = new RecipePage(DishId);
+                        var recipePage = new RecipePage(DishId);
+                        NavigationPage.SetHasNavigationBar(recipePage, true);
+                        App.Current.MainPage = new NavigationPage(recipePage);
                     }
                     else if (result == 0)
                     {
@@ -182,6 +184,7 @@ namespace PalEats.ViewModels
                 await App.Current.MainPage.DisplayAlert("Error", ex.Message, "OK");
             }
             catch (Exception)
+
             {
                 await App.Current.MainPage.DisplayAlert("Error", "An error occurred while adding to favorites.", "OK");
             }
@@ -211,11 +214,16 @@ namespace PalEats.ViewModels
 
         public async Task RemoveFavoriteAsync()
         {
+
             try
             {
-                 var favoriteService = new FavoriteServices();
-                 await favoriteService.RemoveFavoriteAsync(((App)App.Current).currentUser, DishId);
-                 App.Current.MainPage = new RecipePage(DishId);
+                var favoriteService = new FavoriteServices();
+                await favoriteService.RemoveFavoriteAsync(((App)App.Current).currentUser, DishId);
+                var recipePage = new RecipePage(DishId);
+                NavigationPage.SetHasNavigationBar(recipePage, true);
+
+
+                App.Current.MainPage = new NavigationPage(recipePage);
             }
             catch (Exception ex)
             {
