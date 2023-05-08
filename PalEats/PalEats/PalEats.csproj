@@ -14,10 +14,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="System.Data.SqlClient" Version="4.8.5" />
     <PackageReference Include="Xamarin.Essentials" Version="1.7.5" />
 
-    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2578" />  
 
     <PackageReference Include="System.Text.Encoding.CodePages" Version="7.0.0" />
 
@@ -25,7 +23,6 @@
 
     <PackageReference Include="Microsoft.Data.SqlClient" Version="5.1.1" />
     <PackageReference Include="System.Data.SqlClient" Version="4.8.5" />
-    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2196" />
   </ItemGroup>
 
   <ItemGroup>
