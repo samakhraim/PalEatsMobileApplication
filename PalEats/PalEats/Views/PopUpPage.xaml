@@ -1,0 +1,22 @@
+﻿<popup:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:popup="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+             x:Class="PalEats.Views.PopUpPage"   >
+    <Grid  Padding="40" Margin="0,90,0,0">
+        
+            <Grid.RowDefinitions>
+                <RowDefinition Height="300" />
+                <RowDefinition Height="300" />
+            </Grid.RowDefinitions>
+        <StackLayout BackgroundColor="{StaticResource backgroundColor}"    >
+            <Label Padding="30,30,30,0"  FontSize="Medium" TextColor="{StaticResource MainTextColor}" Text="Add To Your Shopping List : " HorizontalOptions="Center"></Label>
+
+            <StackLayout Grid.Row="5" Orientation="Horizontal" VerticalOptions="EndAndExpand" HorizontalOptions="Center">
+                <Button TextColor="{StaticResource MainTextColor}" Text="save" Margin="20"></Button>
+                <Button TextColor="{StaticResource MainTextColor}" Text="cancel" Margin="20"></Button>
+            </StackLayout>
+       
+    </StackLayout>
+    </Grid>
+</popup:PopupPage>
+

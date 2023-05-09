@@ -21,6 +21,10 @@
             <Style TargetType="Label">
                 <Setter Property="FontFamily" Value="Lato-Black" />
             </Style>
+
+            <Style TargetType="Button">
+                <Setter Property="FontFamily" Value="Lato-Black" />
+            </Style>
             
             <Style TargetType="Frame">
                 <Setter Property="Content">
@@ -29,9 +33,7 @@
                     </Setter.Value>
                 </Setter>
             </Style>
-            
            
-
             
             
         </ResourceDictionary>

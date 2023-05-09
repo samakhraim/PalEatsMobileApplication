@@ -1,13 +1,14 @@
 ﻿
 using PalEats.Models;
 using PalEats.ViewModels;
+using Rg.Plugins.Popup.Services;
 using System;
 using System.Linq;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace PalEats.Views
+    namespace PalEats.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class RecipePage : ContentPage
@@ -48,6 +49,12 @@ namespace PalEats.Views
             base.OnDisappearing();
 
             MessagingCenter.Unsubscribe<RecipePage, Recipe>(this, "ShareRecipe");
+        }
+        private  void Shopping_Button(object sender, EventArgs e)
+        {
+            PopupNavigation.Instance.PushAsync(new PopUpPage());
+
+
         }
     }
 }

@@ -12,7 +12,7 @@ namespace PalEats.Views
             InitializeComponent();
         }
 
-        private async void Button_Clicked(object sender, EventArgs e)
+        private async void Button_search_Clicked(object sender, EventArgs e)
         {
 
 
@@ -21,7 +21,7 @@ namespace PalEats.Views
 
         }
 
-        private async void Button_Clicked_1(object sender, EventArgs e)
+        private async void Button_Home_Clicked(object sender, EventArgs e)
         {
 
             await Navigation.PushModalAsync(new NavigationPage(new CategoryPage()));
@@ -29,7 +29,7 @@ namespace PalEats.Views
 
         }
 
-        private async void Button_Clicked_2(object sender, EventArgs e)
+        private async void Button_favorite_Clicked(object sender, EventArgs e)
         {
 
 
