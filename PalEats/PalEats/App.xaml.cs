@@ -6,7 +6,7 @@ using Xamarin.Essentials;
 using PalEats.Models;
 using System.Linq;
 
-[assembly:ExportFont("Lato-Black.ttf", Alias = "Lato-Black")]
+[assembly: ExportFont("Lato-Black.ttf", Alias = "Lato-Black")]
 namespace PalEats
 {
     public partial class App : Application
@@ -17,26 +17,19 @@ namespace PalEats
         {
             InitializeComponent();
 
-            MainPage = new NavigationPage(new SignInPage());
+            MainPage = new NavigationPage(new SignInPage()); 
         }
 
         protected override void OnStart()
         {
-
-
         }
-
 
         protected override void OnSleep()
         {
-
         }
+
         protected override void OnResume()
         {
         }
-
+    }
 }
-
-}
-
-
