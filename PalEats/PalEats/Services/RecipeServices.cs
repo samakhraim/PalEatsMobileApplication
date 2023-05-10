@@ -59,7 +59,7 @@ namespace PalEats.Services
             {
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
-                    string sqlQuery = "SELECT Ingredients.IngredientsName, DishIngredients.Amount FROM DishIngredients INNER JOIN Ingredients ON DishIngredients.IngredientsId = Ingredients.IngredientsId  where DishId = " + id;
+                    string sqlQuery = "SELECT Ingredients.IngredientsName, DishIngredients.Amount, DishIngredients.Unit, Ingredients.IngredientsId FROM DishIngredients INNER JOIN Ingredients ON DishIngredients.IngredientsId = Ingredients.IngredientsId  where DishId = " + id;
                     SqlCommand command = new SqlCommand(sqlQuery, connection);
                     await connection.OpenAsync();
                     SqlDataReader reader = await command.ExecuteReaderAsync();
@@ -68,9 +68,10 @@ namespace PalEats.Services
                     {
                         Ingredients ingredient = new Ingredients
                         {
-
-                            Description = reader["Amount"].ToString() + " " + reader["IngredientsName"].ToString(),
-
+                            Amount = Convert.ToSingle(reader["Amount"]),
+                            Unit = reader["Unit"].ToString(),
+                            Name = reader["IngredientsName"].ToString(),
+                            Id = Convert.ToInt32(reader["IngredientsId"])
                         };
                         ingredients.Add(ingredient);
                     }
@@ -88,10 +89,6 @@ namespace PalEats.Services
                 Debug.WriteLine("Error fetching recipes: " + ex.Message);
                 throw new Exception("Failed to fetch recipes. Message: " + ex.Message);
             }
-            ingredients.ForEach(recipe =>
-            {
-                Console.WriteLine("mmmmmmmmm" + recipe.Description);
-            });
             return ingredients;
         }
     }
