@@ -16,16 +16,6 @@ namespace PalEats.Views
     {
         InitializeComponent();
 
-        if (((App)App.Current).currentUser == 0)
-        {
-            // Set the user name to "Guest"
-            BindingContext = new { UserName = "Guest" };
-        }
-        else
-        {
-            // Set the user name to the user's email address
-            BindingContext = new { UserName = "user@example.com" };
-        }
     }
 }
 

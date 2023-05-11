@@ -12,23 +12,28 @@ namespace PalEats.Views
         public CategoryPage()
         {
             InitializeComponent();
-            NavigationPage.SetHasBackButton(this, false);
+            NavigationPage.SetHasNavigationBar(this, false);
             flyout.listview.ItemSelected += OnSelectedItem;
-
+           
         }
         private void OnSelectedItem(object sender, SelectedItemChangedEventArgs e)
         {
             var item = e.SelectedItem as FlyoutMenuItem;
             if (item != null)
             {
-                Detail = new NavigationPage((Page)Activator.CreateInstance(item.TargetPage));
+                if (item.TargetPage == typeof(SignInPage))
+                {
+                    Detail = new NavigationPage((Page)Activator.CreateInstance(item.TargetPage)) { };
+                }
+                else
+                {
+                    Detail = new NavigationPage((Page)Activator.CreateInstance(item.TargetPage));
+                }
                 flyout.listview.SelectedItem = null;
                 IsPresented = false;
-
             }
-
         }
-    
+
         private async void OnCollectionViewSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var collectionView = sender as CollectionView;
