@@ -27,7 +27,9 @@ namespace PalEats.Views
         {
             ((App)App.Current).currentUser = 0;
 
+
             await Navigation.PushAsync(new CategoryPage());
         }
     }
+
 }

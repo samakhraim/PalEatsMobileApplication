@@ -16,24 +16,13 @@ namespace PalEats
         {
             InitializeComponent();
             MainPage = new NavigationPage(new SignInPage());
+
+            MainPage = new NavigationPage(new SignInPage());       
+
         }
 
         protected override void OnStart()
         {
-            base.OnStart();
-            Connectivity.ConnectivityChanged += CheckInternetConnection;
-        }
-
-        protected override void OnSleep()
-        {
-            base.OnSleep();
-            Connectivity.ConnectivityChanged -= CheckInternetConnection;
-        }
-
-        protected override void OnResume()
-        {
-            base.OnResume();
-            Connectivity.ConnectivityChanged += CheckInternetConnection;
         }
 
     
@@ -51,6 +40,14 @@ namespace PalEats
                     break;
                 }
             }
+        protected override void OnSleep()
+        {
         }
+
+        protected override void OnResume()
+        {
+        }
+    }
+
     }
 }
