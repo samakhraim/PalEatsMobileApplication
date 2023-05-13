@@ -6,6 +6,7 @@ using Xamarin.Essentials;
 using System.Threading.Tasks;
 
 [assembly: ExportFont("Lato-Black.ttf", Alias = "Lato-Black")]
+
 namespace PalEats
 {
     public partial class App : Application
@@ -16,16 +17,12 @@ namespace PalEats
         {
             InitializeComponent();
             MainPage = new NavigationPage(new SignInPage());
-
-            MainPage = new NavigationPage(new SignInPage());       
-
         }
 
         protected override void OnStart()
         {
         }
 
-    
         private async void CheckInternetConnection(object sender, ConnectivityChangedEventArgs e)
         {
             while (true)
@@ -40,6 +37,8 @@ namespace PalEats
                     break;
                 }
             }
+        }
+
         protected override void OnSleep()
         {
         }
@@ -47,7 +46,5 @@ namespace PalEats
         protected override void OnResume()
         {
         }
-    }
-
     }
 }
