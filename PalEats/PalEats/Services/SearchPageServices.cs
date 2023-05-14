@@ -15,27 +15,40 @@ namespace PalEats.Services
         {
             List<Dish> searchResults = new List<Dish>();
 
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            try
             {
-                await connection.OpenAsync();
-
-                string query = "SELECT * FROM Dish WHERE DishName LIKE @SearchText";
-                SqlCommand command = new SqlCommand(query, connection);
-                command.Parameters.AddWithValue("@SearchText", "%" + searchText + "%");
-
-                using (SqlDataReader reader = await command.ExecuteReaderAsync())
+                using (SqlConnection connection = new SqlConnection(connectionString))
                 {
-                    while (await reader.ReadAsync())
+                    await connection.OpenAsync();
+
+                    string query = "SELECT * FROM Dish WHERE DishName LIKE @SearchText";
+                    SqlCommand command = new SqlCommand(query, connection);
+                    command.Parameters.AddWithValue("@SearchText", "%" + searchText + "%");
+
+                    using (SqlDataReader reader = await command.ExecuteReaderAsync())
                     {
-                        Dish dish = new Dish
+                        while (await reader.ReadAsync())
                         {
-                            DishId = Convert.ToInt32(reader["DishId"]),
-                            DishImgUrl = reader.GetString(reader.GetOrdinal("DishImgUrl")),
-                            DishName = reader.GetString(reader.GetOrdinal("DishName"))
-                        };
-                        searchResults.Add(dish);
+                            Dish dish = new Dish
+                            {
+                                DishId = Convert.ToInt32(reader["DishId"]),
+                                DishImgUrl = reader.GetString(reader.GetOrdinal("DishImgUrl")),
+                                DishName = reader.GetString(reader.GetOrdinal("DishName"))
+                            };
+                            searchResults.Add(dish);
+                        }
                     }
                 }
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine($"Error message: {ex.Message}");
+                throw;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error message: {ex.Message}");
+                throw;
             }
 
             return searchResults;
