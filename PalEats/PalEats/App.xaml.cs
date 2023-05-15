@@ -4,6 +4,8 @@ using Xamarin.Essentials;
 using PalEats.Models;
 using System.Linq;
 using System.Threading.Tasks;
+using Prism.Common;
+using System.ComponentModel;
 using PalEats.Views;
 using System.Diagnostics;
 
@@ -15,6 +17,12 @@ namespace PalEats
     public partial class App : Application
     {
         public int currentUser { get; set; }
+        public string CurrentUserEmail { get; set; }
+
+
+        public static event EventHandler LoginStatusUpdated;
+
+
         public App()
         {
             InitializeComponent();
@@ -59,5 +67,23 @@ namespace PalEats
                 }
             }
         }
+
+    
+
+        public static void NotifyLoginStatusUpdated()
+        {
+            LoginStatusUpdated?.Invoke(null, EventArgs.Empty);
+        }
+
+        public void LogOut()
+        {
+            // Reset user-specific data
+            currentUser = 0;
+            CurrentUserEmail = null;
+
+            // Notify that the login status has been updated
+            NotifyLoginStatusUpdated();
+        }
+
     }
 }

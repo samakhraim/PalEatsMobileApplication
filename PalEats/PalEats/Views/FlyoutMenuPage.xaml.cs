@@ -11,12 +11,36 @@ namespace PalEats.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class FlyoutMenuPage : ContentPage
-{
-    public FlyoutMenuPage()
     {
-        InitializeComponent();
+        public FlyoutMenuPage()
+        {
+            InitializeComponent();
+            SetLoginStatus();
+            App.LoginStatusUpdated += OnLoginStatusUpdated; // Subscribe to the login status updated event
+        }
 
+        private void SetLoginStatus()
+        {
+            var app = (App)Application.Current;
+            if (app.currentUser > 0)
+            {
+                loginStatusLabel.Text = app.CurrentUserEmail;
+            }
+            else
+            {
+                loginStatusLabel.Text = " Guest";
+            }
+        }
+
+        private void OnLoginStatusUpdated(object sender, EventArgs e)
+        {
+            SetLoginStatus();
+        }
+
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+            App.LoginStatusUpdated -= OnLoginStatusUpdated; // Unsubscribe from the login status updated event
+        }
     }
-}
-
 }

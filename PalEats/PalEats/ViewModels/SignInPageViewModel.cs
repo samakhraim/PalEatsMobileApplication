@@ -70,8 +70,12 @@ namespace PalEats.ViewModel
                 if (result > 0)
                 {
                     ((App)App.Current).currentUser = result;
+                    ((App)App.Current).CurrentUserEmail = SignInModel.Email; 
+                    App.NotifyLoginStatusUpdated(); 
                     await Application.Current.MainPage.Navigation.PushAsync(new CategoryPage());
                 }
+
+
                 else
                 {
                     await Application.Current.MainPage.DisplayAlert("Error", "Incorrect email or password", "OK");
