@@ -1,10 +1,9 @@
 ﻿using PalEats.Views;
-using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Xamarin.Essentials;
 using System.Threading.Tasks;
-
+using System;
 [assembly: ExportFont("Lato-Black.ttf", Alias = "Lato-Black")]
 namespace PalEats
 {
