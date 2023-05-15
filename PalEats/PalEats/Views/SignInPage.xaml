@@ -29,7 +29,8 @@
                HasShadow="True">
                 <Entry Text="{Binding SignInModel.Email}"
                    Placeholder="Email"
-                       FontFamily="Lato-Black"
+                  
+                       
                    FontSize="Small" />
         </Frame>
 
@@ -40,13 +41,13 @@
                HasShadow="True">
             <Entry Text="{Binding SignInModel.Password}"
                    Placeholder="Password"
-                  FontFamily="Lato-Black"
+           
                    IsPassword="True"
                    FontSize="Small" />
         </Frame>
 
         <Button Text="Sign In"
-                FontFamily="Lato-Black"
+        
                 BackgroundColor="{StaticResource FrameBackgroundColor}"
                 TextColor="{StaticResource MainTextColor}"
                 Command="{Binding SignInCommand}"

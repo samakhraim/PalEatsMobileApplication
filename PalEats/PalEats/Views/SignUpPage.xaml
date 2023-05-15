@@ -23,7 +23,7 @@
                FontSize="40"
                HorizontalOptions="Center"
                TextColor="{StaticResource MainTextColor}"
-               FontFamily="Lato-Black"               />
+                             />
 
         <Frame CornerRadius="20"
                BackgroundColor="{StaticResource FrameBackgroundColor}"
@@ -32,7 +32,7 @@
                HasShadow="True">
             <Entry Text="{Binding SignUpModel.Email}" 
                    Placeholder="Email" 
-                   FontFamily="Lato-Black"
+                
                    FontSize="Small" />
         </Frame>
 
@@ -44,7 +44,7 @@
             <Entry Text="{Binding SignUpModel.Password}" 
                    Placeholder="Password" 
                    IsPassword="True" 
-                   FontFamily="Lato-Black"
+            
                    FontSize="Small" />
         </Frame>
 
@@ -56,7 +56,7 @@
             <Entry Text="{Binding ConfirmPassword}" 
                    Placeholder="Confirm Password" 
                    FontSize="Small"
-                   FontFamily="Lato-Black"
+                
                    IsPassword="True" />
         </Frame>
 
