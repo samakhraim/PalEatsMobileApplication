@@ -82,8 +82,12 @@ namespace PalEats.ViewModels
 
                 if (result > 0)
                 {
+                    ((App)App.Current).currentUser = result;
+                    ((App)App.Current).CurrentUserEmail = SignUpModel.Email; // Set the current user's email
+                    App.NotifyLoginStatusUpdated(); // Notify that the login status has been updated
                     await Application.Current.MainPage.Navigation.PushAsync(new CategoryPage());
                 }
+
                 else if (result == 0)
                 {
                     await Application.Current.MainPage.DisplayAlert("Error", "Email address is already in use", "OK");

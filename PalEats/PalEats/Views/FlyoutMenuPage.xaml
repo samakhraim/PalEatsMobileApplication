@@ -6,18 +6,17 @@
              xmlns:m="clr-namespace:PalEats.Models">
 
     <StackLayout Padding="10" BackgroundColor="{StaticResource backgroundColor }">
-          <Frame BackgroundColor="Transparent"  HorizontalOptions="Start" >
-              
-                <Image Source="profile.png" HeightRequest="50"/>
-            </Frame>
-       
-          
+        <Frame BackgroundColor="Transparent" HorizontalOptions="Center"  >
+            <Image Source="profile.png" HeightRequest="150"  />
+        </Frame>
+
+        <Label x:Name="loginStatusLabel"  TextColor="{StaticResource MainTextColor}" FontSize="18"  HorizontalOptions="Center" Margin="0,-30,0,30"/>
 
         <ListView x:Name="listview" x:FieldModifier="Public">
             <ListView.ItemsSource>
                 <x:Array Type="{x:Type m:FlyoutMenuItem}">
                     <m:FlyoutMenuItem Title="Shopping List" IconSource="shoppinglist.png" TargetPage="{x:Type local:SignInPage}"/>
-                    <m:FlyoutMenuItem Title="Log Out" IconSource="logout.png" TargetPage="{x:Type local:SignUpPage}"/>
+                    <m:FlyoutMenuItem Title="Log Out" IconSource="logout.png" TargetPage="{x:Type local:SignInPage}"/>
                 </x:Array>
             </ListView.ItemsSource>
             <ListView.ItemTemplate>
@@ -35,7 +34,7 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-
+        
         <StackLayout VerticalOptions="EndAndExpand">
             <Label TextColor="{StaticResource MainTextColor}" Text="Contact Us" FontSize="Caption" FontAttributes="Bold" Margin="10,5"/>
             <Label TextColor="{StaticResource MainTextColor}" Text="info.paleats@gmail.com" FontSize="Caption" FontAttributes="Bold" Margin="10,5"/>

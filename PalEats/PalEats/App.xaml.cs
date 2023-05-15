@@ -4,6 +4,8 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Xamarin.Essentials;
 using System.Threading.Tasks;
+using Prism.Common;
+using System.ComponentModel;
 
 [assembly: ExportFont("Lato-Black.ttf", Alias = "Lato-Black")]
 
@@ -12,6 +14,10 @@ namespace PalEats
     public partial class App : Application
     {
         public int currentUser { get; set; }
+        public string CurrentUserEmail { get; set; }
+
+
+        public static event EventHandler LoginStatusUpdated;
 
         public App()
         {
@@ -45,6 +51,21 @@ namespace PalEats
 
         protected override void OnResume()
         {
+        }
+
+        public static void NotifyLoginStatusUpdated()
+        {
+            LoginStatusUpdated?.Invoke(null, EventArgs.Empty);
+        }
+
+        public void LogOut()
+        {
+            // Reset user-specific data
+            currentUser = 0;
+            CurrentUserEmail = null;
+
+            // Notify that the login status has been updated
+            NotifyLoginStatusUpdated();
         }
     }
 }
