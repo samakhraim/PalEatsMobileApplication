@@ -1,4 +1,5 @@
-﻿using PalEats.Models;
+﻿using Microsoft.IdentityModel.Tokens;
+using PalEats.Models;
 using PalEats.Services;
 using PalEats.Views;
 using System;
@@ -36,6 +37,14 @@ namespace PalEats.ViewModels
             try
             {
                 FavoriteDishes = await favoritePageServices.GetFavoritepageAsync();
+                if (FavoriteDishes.IsNullOrEmpty()) {
+                    HasNoFav = true;
+                }
+                else
+                {
+                    HasNoFav = false;
+                }
+                HasFav = !HasNoFav;
             }
             catch (Exception ex)
             {
@@ -45,6 +54,10 @@ namespace PalEats.ViewModels
                 await App.Current.MainPage.DisplayAlert("Error", "An error occurred while loading recipes. Please try again later.", "OK");
             }
         }
+        public bool HasNoFav { get; set; }
+        public bool HasFav { get; set; }
+
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged(string propertyName)
         {

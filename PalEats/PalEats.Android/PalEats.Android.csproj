@@ -54,14 +54,12 @@
     <EnableLLVM>false</EnableLLVM>
     <AndroidEnableProfiledAot>false</AndroidEnableProfiledAot>
     <BundleAssemblies>false</BundleAssemblies>
-    <MandroidI18n>West</MandroidI18n>
     <AndroidKeyStore>true</AndroidKeyStore>
-    <AndroidSigningKeyStore>
-    </AndroidSigningKeyStore>
-    <AndroidSigningKeyAlias>
-    </AndroidSigningKeyAlias>
-    <AndroidSigningKeyPass>
-    </AndroidSigningKeyPass>
+    <AndroidSigningKeyAlias>PalEatsApp</AndroidSigningKeyAlias>
+    <AndroidSigningKeyPass>paleatsapp2023</AndroidSigningKeyPass>
+    <AndroidSigningKeyStore>D:\study\year3\sem2\mobile\PalEatsApp.keystore</AndroidSigningKeyStore>
+    <AndroidSigningStorePass>paleatsapp2023</AndroidSigningStorePass>
+    <MandroidI18n>Mideast;West</MandroidI18n>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Mono.Android" />
@@ -239,7 +237,7 @@
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties XamarinHotReloadDebuggerTimeoutExceptionPalEatsAndroidHideInfoBar="True" />
+      <UserProperties XamarinHotReloadWrongLinkerErrorInfoBarPalEatsAndroidHideInfoBar="True" XamarinHotReloadDebuggerTimeoutExceptionPalEatsAndroidHideInfoBar="True" />
     </VisualStudio>
   </ProjectExtensions>
 </Project>

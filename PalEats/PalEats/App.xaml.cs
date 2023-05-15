@@ -1,13 +1,16 @@
-﻿using PalEats.Views;
-using System;
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Xamarin.Essentials;
+using PalEats.Models;
+using System.Linq;
 using System.Threading.Tasks;
 using Prism.Common;
 using System.ComponentModel;
+using PalEats.Views;
+using System.Diagnostics;
 
 [assembly: ExportFont("Lato-Black.ttf", Alias = "Lato-Black")]
+
 
 namespace PalEats
 {
@@ -19,18 +22,38 @@ namespace PalEats
 
         public static event EventHandler LoginStatusUpdated;
 
+
         public App()
         {
             InitializeComponent();
+
             MainPage = new NavigationPage(new SignInPage());
         }
 
         protected override void OnStart()
         {
+            base.OnStart();
+            CheckInternetConnection(null, null);
+            Connectivity.ConnectivityChanged += CheckInternetConnection;
         }
+
+
+        protected override void OnSleep()
+        {
+            base.OnSleep();
+            Connectivity.ConnectivityChanged -= CheckInternetConnection;
+        }
+
+        protected override void OnResume()
+        {
+            base.OnResume();
+            Connectivity.ConnectivityChanged += CheckInternetConnection;
+        }
+
 
         private async void CheckInternetConnection(object sender, ConnectivityChangedEventArgs e)
         {
+
             while (true)
             {
                 if (Connectivity.NetworkAccess != NetworkAccess.Internet)
@@ -45,13 +68,7 @@ namespace PalEats
             }
         }
 
-        protected override void OnSleep()
-        {
-        }
-
-        protected override void OnResume()
-        {
-        }
+    
 
         public static void NotifyLoginStatusUpdated()
         {
@@ -67,5 +84,6 @@ namespace PalEats
             // Notify that the login status has been updated
             NotifyLoginStatusUpdated();
         }
+
     }
 }
