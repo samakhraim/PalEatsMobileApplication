@@ -7,13 +7,31 @@ using Xamarin.Forms.Xaml;
 namespace PalEats.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class CategoryPage : ContentPage
+    public partial class CategoryPage : FlyoutPage
     {
         public CategoryPage()
         {
             InitializeComponent();
-            NavigationPage.SetHasBackButton(this, false);
-
+            NavigationPage.SetHasNavigationBar(this, false);
+            flyout.listview.ItemSelected += OnSelectedItem;
+           
+        }
+        private void OnSelectedItem(object sender, SelectedItemChangedEventArgs e)
+        {
+            var item = e.SelectedItem as FlyoutMenuItem;
+            if (item != null)
+            {
+                if (item.TargetPage == typeof(SignInPage))
+                {
+                    Detail = new NavigationPage((Page)Activator.CreateInstance(item.TargetPage)) { };
+                }
+                else
+                {
+                    Detail = new NavigationPage((Page)Activator.CreateInstance(item.TargetPage));
+                }
+                flyout.listview.SelectedItem = null;
+                IsPresented = false;
+            }
         }
 
         private async void OnCollectionViewSelectionChanged(object sender, SelectionChangedEventArgs e)
