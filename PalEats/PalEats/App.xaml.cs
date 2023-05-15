@@ -1,9 +1,12 @@
+﻿using PalEats.Views;
+using Xamarin.Forms;
 ﻿using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Xamarin.Essentials;
 using PalEats.Models;
 using System.Linq;
 using System.Threading.Tasks;
+using System;
 using Prism.Common;
 using System.ComponentModel;
 using PalEats.Views;

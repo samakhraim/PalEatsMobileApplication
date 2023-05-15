@@ -165,7 +165,7 @@ namespace PalEats.ViewModels
 
                     if (result > 0)
                     {
-                        App.Current.MainPage = new RecipePage(DishId);
+                        await App.Current.MainPage.Navigation.PushAsync(new RecipePage(DishId));
                     }
                     else if (result == 0)
                     {
@@ -213,15 +213,15 @@ namespace PalEats.ViewModels
         {
             try
             {
-                 var favoriteService = new FavoriteServices();
-                 await favoriteService.RemoveFavoriteAsync(((App)App.Current).currentUser, DishId);
-                 App.Current.MainPage = new RecipePage(DishId);
+                var favoriteService = new FavoriteServices();
+                await favoriteService.RemoveFavoriteAsync(((App)App.Current).currentUser, DishId);
+
+                await App.Current.MainPage.Navigation.PushAsync(new RecipePage(DishId));
             }
             catch (Exception ex)
             {
-                Debug.WriteLine($"Error while loading recipes: {ex.Message}");
-
-                await App.Current.MainPage.DisplayAlert("Error", "An error occurred while loading recipes. Please try again later.", "OK");
+                Debug.WriteLine($"Error while removing favorite: {ex.Message}");
+                await App.Current.MainPage.DisplayAlert("Error", "An error occurred while removing the favorite. Please try again later.", "OK");
             }
         }
     }
