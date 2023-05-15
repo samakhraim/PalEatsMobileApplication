@@ -12,8 +12,6 @@ using System.ComponentModel;
 using PalEats.Views;
 using System.Diagnostics;
 
-[assembly: ExportFont("Lato-Black.ttf", Alias = "Lato-Black")]
-
 
 namespace PalEats
 {

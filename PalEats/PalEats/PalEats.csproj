@@ -6,14 +6,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Fonts\Lato-Black.ttf" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <EmbeddedResource Include="Fonts\Lato-Black.ttf" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Acr.UserDialogs" Version="7.2.0.564" />
     <PackageReference Include="Rg.Plugins.Popup" Version="2.1.0" />
     <PackageReference Include="Xamarin.CommunityToolkit" Version="2.0.6" />
