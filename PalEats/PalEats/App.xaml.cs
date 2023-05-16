@@ -78,12 +78,12 @@ namespace PalEats
 
         public void LogOut()
         {
-            // Reset user-specific data
-            currentUser = 0;
-            CurrentUserEmail = null;
-
             // Notify that the login status has been updated
             NotifyLoginStatusUpdated();
+
+            // Reset user-specific data
+            currentUser = 0;
+            CurrentUserEmail = null;          
         }
 
     }

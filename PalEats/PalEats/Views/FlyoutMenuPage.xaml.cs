@@ -1,4 +1,5 @@
-﻿using PalEats.ViewModel;
+﻿using PalEats.Models;
+using PalEats.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,6 +18,31 @@ namespace PalEats.Views
             InitializeComponent();
             SetLoginStatus();
             App.LoginStatusUpdated += OnLoginStatusUpdated; // Subscribe to the login status updated event
+            listview.ItemSelected += OnMenuItemSelected;
+
+        }
+
+        void OnMenuItemSelected(object sender, SelectedItemChangedEventArgs e)
+        {
+            var item = e.SelectedItem as FlyoutMenuItem;
+
+            if (item == null)
+                return;
+
+            if (item.Title == "Log Out")
+            {
+                ((App)App.Current).LogOut();
+                // After logout, navigate to sign in page
+                Navigation.PushAsync(new SignInPage());
+            }
+            else
+            {
+                // Navigate to the target page
+                Navigation.PushAsync((Page)Activator.CreateInstance(item.TargetPage));
+            }
+
+            // Deselect the item
+            listview.SelectedItem = null;
         }
 
         private void SetLoginStatus()
