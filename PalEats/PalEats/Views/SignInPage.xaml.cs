@@ -21,11 +21,11 @@ namespace PalEats.Views
 
         private async void OnSignUpTapped(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new SignUpPage());
+            await Navigation.PushAsync(new SignInPage());
         }
         private async void GuestClicked(object sender, EventArgs e)
         {
-            ((App)App.Current).CurrentUser = 0;
+            ((App)App.Current).currentUser = 0;
 
 
             await Navigation.PushAsync(new CategoryPage());

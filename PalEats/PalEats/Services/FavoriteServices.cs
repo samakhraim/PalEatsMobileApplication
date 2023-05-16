@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Threading.Tasks;
+using PalEats.Models;
 namespace PalEats.Services
 {
     public class FavoriteServices

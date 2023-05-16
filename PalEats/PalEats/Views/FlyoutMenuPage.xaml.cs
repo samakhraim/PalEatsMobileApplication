@@ -1,6 +1,10 @@
 ﻿using PalEats.Models;
-using PalEats.ViewModels;
+using PalEats.ViewModel;
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -14,7 +18,8 @@ namespace PalEats.Views
             InitializeComponent();
             SetLoginStatus();
             App.LoginStatusUpdated += OnLoginStatusUpdated; // Subscribe to the login status updated event
-            ListView.ItemSelected += OnMenuItemSelected;
+            listview.ItemSelected += OnMenuItemSelected;
+
         }
 
         void OnMenuItemSelected(object sender, SelectedItemChangedEventArgs e)
@@ -26,8 +31,8 @@ namespace PalEats.Views
 
             if (item.Title == "Log Out")
             {
-                ((App)Application.Current).LogOut();
-                // After logout, navigate to the sign-in page
+                ((App)App.Current).LogOut();
+                // After logout, navigate to sign in page
                 Navigation.PushAsync(new SignInPage());
             }
             else
@@ -37,19 +42,19 @@ namespace PalEats.Views
             }
 
             // Deselect the item
-            ListView.SelectedItem = null;
+            listview.SelectedItem = null;
         }
 
         private void SetLoginStatus()
         {
             var app = (App)Application.Current;
-            if (app.CurrentUser > 0)
+            if (app.currentUser > 0)
             {
-                LoginStatusLabel.Text = app.CurrentUserEmail;
+                loginStatusLabel.Text = app.CurrentUserEmail;
             }
             else
             {
-                LoginStatusLabel.Text = "Guest";
+                loginStatusLabel.Text = " Guest";
             }
         }
 

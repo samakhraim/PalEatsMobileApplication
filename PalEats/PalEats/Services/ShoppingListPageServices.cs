@@ -1,8 +1,10 @@
 ﻿using PalEats.Models;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Diagnostics;
+using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using System.Linq;
@@ -20,7 +22,7 @@ namespace PalEats.Services
                 await connection.OpenAsync();
                 // Select all existing ingredients in shopping list for the current user
                 SqlCommand retrieveCommand = new SqlCommand("SELECT * FROM ShoppingList WHERE UserId = @UserId", connection);
-                retrieveCommand.Parameters.AddWithValue("@UserId", ((App)App.Current).CurrentUser);
+                retrieveCommand.Parameters.AddWithValue("@UserId", ((App)App.Current).currentUser);
 
                 SqlDataReader reader = await retrieveCommand.ExecuteReaderAsync();
                 List<Ingredients> shoppingList = new List<Ingredients>();
@@ -65,7 +67,7 @@ namespace PalEats.Services
                     }).ToList();
 
                     SqlCommand deleteCommand = new SqlCommand("DELETE FROM ShoppingList WHERE UserId = @UserId", connection);
-                    deleteCommand.Parameters.AddWithValue("@UserId", ((App)App.Current).CurrentUser);
+                    deleteCommand.Parameters.AddWithValue("@UserId", ((App)App.Current).currentUser);
                     await deleteCommand.ExecuteNonQueryAsync();
 
 
@@ -73,7 +75,7 @@ namespace PalEats.Services
                     foreach (var ingredient in newList)
                     {
                         SqlCommand insertCommand = new SqlCommand("INSERT INTO ShoppingList (UserId, IngredientsId, Amount, Unit) VALUES (@UserId, @IngredientsId, @Amount, @Unit)", connection);
-                        insertCommand.Parameters.AddWithValue("@UserId", ((App)App.Current).CurrentUser);
+                        insertCommand.Parameters.AddWithValue("@UserId", ((App)App.Current).currentUser);
                         insertCommand.Parameters.AddWithValue("@IngredientsId", ingredient.Id);
                         insertCommand.Parameters.AddWithValue("@Amount", ingredient.Amount);
                         insertCommand.Parameters.AddWithValue("@Unit", ingredient.Unit);
