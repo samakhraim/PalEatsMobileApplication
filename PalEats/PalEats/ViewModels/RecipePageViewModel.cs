@@ -27,10 +27,6 @@ namespace PalEats.ViewModels
                 FavoriteButtonClicked = new Command(async () => await RemoveFavoriteAsync());
             else
                 FavoriteButtonClicked = new Command(async () => await AddToFavoriteAsync());
-
-
-
-
         }
 
 
@@ -147,7 +143,7 @@ namespace PalEats.ViewModels
         {
             try
             {
-                var currentUser = ((App)App.Current).currentUser;
+                var currentUser = ((App)App.Current).CurrentUser;
 
                 if (currentUser == 0)
                 {
@@ -198,7 +194,7 @@ namespace PalEats.ViewModels
             try
             {
                 var favoriteService = new FavoriteServices();
-                Selected = await favoriteService.IsSelectedAsync(((App)App.Current).currentUser, DishId);
+                Selected = await favoriteService.IsSelectedAsync(((App)App.Current).CurrentUser, DishId);
 
             }
             catch (Exception ex)
@@ -214,7 +210,7 @@ namespace PalEats.ViewModels
             try
             {
                 var favoriteService = new FavoriteServices();
-                await favoriteService.RemoveFavoriteAsync(((App)App.Current).currentUser, DishId);
+                await favoriteService.RemoveFavoriteAsync(((App)App.Current).CurrentUser, DishId);
 
                 await App.Current.MainPage.Navigation.PushAsync(new RecipePage(DishId));
             }

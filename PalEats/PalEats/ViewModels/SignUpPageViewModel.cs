@@ -9,39 +9,38 @@ using PalEats.Services;
 using PalEats.Views;
 using System.Text.RegularExpressions;
 
-
 namespace PalEats.ViewModels
 {
     public class SignUpPageViewModel : INotifyPropertyChanged
     {
-        public SignUpPageViewModel()
-        {
-            SignUpButtonClicked = new Command(async () => await SignUpAsync());
-        }
-
-        private SignUpModel _signUpModel = new SignUpModel();
+        private SignUpModel signUpModel = new SignUpModel();
         public SignUpModel SignUpModel
         {
-            get { return _signUpModel; }
+            get { return signUpModel; }
             set
             {
-                _signUpModel = value;
+                signUpModel = value;
                 OnPropertyChanged();
             }
         }
 
-        private string _confirmPassword;
+        private string confirmPassword;
         public string ConfirmPassword
         {
-            get { return _confirmPassword; }
+            get { return confirmPassword; }
             set
             {
-                _confirmPassword = value;
+                confirmPassword = value;
                 OnPropertyChanged();
             }
         }
 
         public ICommand SignUpButtonClicked { get; private set; }
+
+        public SignUpPageViewModel()
+        {
+            SignUpButtonClicked = new Command(async () => await SignUpAsync());
+        }
 
         private async Task SignUpAsync()
         {
@@ -82,12 +81,11 @@ namespace PalEats.ViewModels
 
                 if (result > 0)
                 {
-                    ((App)App.Current).currentUser = result;
-                    ((App)App.Current).CurrentUserEmail = SignUpModel.Email; // Set the current user's email
+                    ((App)Application.Current).CurrentUser = result;
+                    ((App)Application.Current).CurrentUserEmail = SignUpModel.Email; // Set the current user's email
                     App.NotifyLoginStatusUpdated(); // Notify that the login status has been updated
                     await Application.Current.MainPage.Navigation.PushAsync(new CategoryPage());
                 }
-
                 else if (result == 0)
                 {
                     await Application.Current.MainPage.DisplayAlert("Error", "Email address is already in use", "OK");
@@ -106,7 +104,6 @@ namespace PalEats.ViewModels
                 await Application.Current.MainPage.DisplayAlert("Error", "An error occurred while signing up", "OK");
             }
         }
-
 
         public event PropertyChangedEventHandler PropertyChanged;
 

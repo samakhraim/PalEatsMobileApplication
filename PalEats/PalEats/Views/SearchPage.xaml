@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:components="clr-namespace:PalEats.Views"
              x:Class="PalEats.Views.SearchPage"  
-                          NavigationPage.HasNavigationBar="False"               
+            NavigationPage.HasNavigationBar="False"               
              xmlns:local="clr-namespace:PalEats.ViewModels">
     <ContentPage.BindingContext>
         <local:SearchPageViewModel/>
@@ -11,7 +11,7 @@
    
     
     <ContentPage.Content>
-        <StackLayout BackgroundColor="{StaticResource backgroundColor}">
+        <StackLayout BackgroundColor="{StaticResource BackgroundColor}">
             <StackLayout>
                 <SearchBar Placeholder="Search"
                        Text="{Binding SearchText}"

@@ -42,7 +42,7 @@ namespace PalEats.Views
             var currentPage = Navigation.NavigationStack.LastOrDefault();
             if (!(currentPage is FavoritePage))
             {
-                if (((App)Application.Current).currentUser == 0)
+                if (((App)Application.Current).CurrentUser == 0)
                 {
                     bool answer = await Application.Current.MainPage.DisplayAlert("Favorite Page", "You are currently a guest. Do you want to sign in?", "Yes", "No");
 

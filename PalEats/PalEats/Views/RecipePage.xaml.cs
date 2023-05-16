@@ -51,7 +51,7 @@ namespace PalEats.Views
         }
         private async void AddToShoppingListButtonClicked(object sender, EventArgs e)
         {
-            var currentUser = ((App)App.Current).currentUser;
+            var currentUser = ((App)App.Current).CurrentUser;
 
             if (currentUser == 0)
             {
