@@ -1,5 +1,7 @@
 ﻿using PalEats.Models;
 using PalEats.Services;
+using PalEats.Views;
+using Prism.Navigation.Xaml;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

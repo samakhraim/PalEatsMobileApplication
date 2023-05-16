@@ -1,12 +1,17 @@
-﻿using System;
+﻿using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
+using System;
 using System.Collections.Generic;
+using System.Text;
 using PalEats.Models;
 using PalEats.Services;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
+using System.Windows;
 namespace PalEats.ViewModels
 {
 

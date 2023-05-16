@@ -5,14 +5,14 @@
              Title="FlyoutMenu"
              xmlns:m="clr-namespace:PalEats.Models">
 
-    <StackLayout Padding="10" BackgroundColor="{StaticResource BackgroundColor }">
+    <StackLayout Padding="10" BackgroundColor="{StaticResource backgroundColor }">
         <Frame BackgroundColor="Transparent" HorizontalOptions="Center"  >
             <Image Source="profile.png" HeightRequest="150"  />
         </Frame>
 
-        <Label x:Name="LoginStatusLabel"  TextColor="{StaticResource MainTextColor}" FontSize="18"  HorizontalOptions="Center" Margin="0,-30,0,30"/>
+        <Label x:Name="loginStatusLabel"  TextColor="{StaticResource MainTextColor}" FontSize="18"  HorizontalOptions="Center" Margin="0,-30,0,30"/>
 
-        <ListView x:Name="ListView" x:FieldModifier="Public">
+        <ListView x:Name="listview" x:FieldModifier="Public">
             <ListView.ItemsSource>
                 <x:Array Type="{x:Type m:FlyoutMenuItem}">
                     <m:FlyoutMenuItem Title="Shopping List" IconSource="shoppinglist.png" TargetPage="{x:Type local:SignInPage}"/>
