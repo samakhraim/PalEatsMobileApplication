@@ -19,7 +19,7 @@ namespace PalEats.Services
                 {
                     string sqlQuery = "SELECT Dish.DishId, Dish.DishName, Dish.DishImgUrl FROM Favorite JOIN Dish ON Favorite.DishId = Dish.DishId WHERE Favorite.UserId = @currentUser";
                     SqlCommand command = new SqlCommand(sqlQuery, connection);
-                    int currentUserId = ((App)App.Current).currentUser;
+                    int currentUserId = ((App)App.Current).CurrentUser;
                     command.Parameters.AddWithValue("@currentUser", currentUserId);
                     await connection.OpenAsync();
                     SqlDataReader reader = await command.ExecuteReaderAsync();

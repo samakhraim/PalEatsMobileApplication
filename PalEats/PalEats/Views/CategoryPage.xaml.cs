@@ -13,9 +13,9 @@ namespace PalEats.Views
         {
             InitializeComponent();
             NavigationPage.SetHasNavigationBar(this, false);
-            flyout.listview.ItemSelected += OnSelectedItem;
-           
+            flyout.ListView.ItemSelected += OnSelectedItem;
         }
+
         private void OnSelectedItem(object sender, SelectedItemChangedEventArgs e)
         {
             var item = e.SelectedItem as FlyoutMenuItem;
@@ -29,7 +29,7 @@ namespace PalEats.Views
                 {
                     Detail = new NavigationPage((Page)Activator.CreateInstance(item.TargetPage));
                 }
-                flyout.listview.SelectedItem = null;
+                flyout.ListView.SelectedItem = null;
                 IsPresented = false;
             }
         }
@@ -43,7 +43,7 @@ namespace PalEats.Views
             {
                 collectionView.SelectedItem = null;
 
-                string pageTitle =null;
+                string pageTitle = null;
                 switch (selectedCategory.CategoryId)
                 {
                     case 3:
@@ -70,4 +70,3 @@ namespace PalEats.Views
         }
     }
 }
-

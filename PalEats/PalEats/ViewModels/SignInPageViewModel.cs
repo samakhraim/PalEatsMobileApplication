@@ -3,7 +3,6 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Windows.Input;
-
 using PalEats.Models;
 using PalEats.Services;
 using PalEats.Views;
@@ -16,7 +15,7 @@ namespace PalEats.ViewModel
         private SignInServices signInService;
         public ICommand GuestClicked { get; }
         public ICommand SignInCommand { get; }
-        public ICommand OnSignUpTapped{ get;  }
+        public ICommand OnSignUpTapped { get; }
 
         public SignInViewModel()
         {
@@ -31,6 +30,7 @@ namespace PalEats.ViewModel
         {
             await Application.Current.MainPage.Navigation.PushAsync(new CategoryPage());
         }
+
         private SignUpModel signInModel = new SignUpModel();
         public SignUpModel SignInModel
         {
@@ -41,8 +41,6 @@ namespace PalEats.ViewModel
                 OnPropertyChanged();
             }
         }
-
-
 
         private async Task SignInAsync()
         {
@@ -69,13 +67,11 @@ namespace PalEats.ViewModel
 
                 if (result > 0)
                 {
-                    ((App)App.Current).currentUser = result;
-                    ((App)App.Current).CurrentUserEmail = SignInModel.Email; 
-                    App.NotifyLoginStatusUpdated(); 
+                    ((App)App.Current).CurrentUser = result;
+                    ((App)App.Current).CurrentUserEmail = SignInModel.Email;
+                    App.NotifyLoginStatusUpdated();
                     await Application.Current.MainPage.Navigation.PushAsync(new CategoryPage());
                 }
-
-
                 else
                 {
                     await Application.Current.MainPage.DisplayAlert("Error", "Incorrect email or password", "OK");
@@ -90,8 +86,6 @@ namespace PalEats.ViewModel
                 await Application.Current.MainPage.DisplayAlert("Error", "Wrong Password ", "OK");
             }
         }
-
-
 
         public event PropertyChangedEventHandler PropertyChanged;
 

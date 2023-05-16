@@ -5,7 +5,7 @@
     
     <Application.Resources>
         <ResourceDictionary>
-            <Color x:Key="backgroundColor">#FFF4EC</Color>
+            <Color x:Key="BackgroundColor">#FFF4EC</Color>
             <Color x:Key="MainHeadandNavbarColor">#FBD6BC</Color>
             <Color x:Key="MainTextColor">#543214</Color>
             <Color x:Key="RecipeHeaderColor">#F9EFE3</Color>

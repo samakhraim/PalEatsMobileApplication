@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -24,7 +19,7 @@ namespace PalEats.Views
         }
         private async void OnGuestButtonClicked(object sender, EventArgs e)
         {
-            ((App)App.Current).currentUser = 0;
+            ((App)App.Current).CurrentUser = 0;
             await Navigation.PushAsync(new CategoryPage());
         }
     }
