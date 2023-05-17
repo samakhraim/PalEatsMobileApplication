@@ -48,9 +48,7 @@ namespace PalEats.Services
                 await Application.Current.MainPage.DisplayAlert("Error", "Failed to fetch ingredients", "OK");
             }
             return shoppingList;
-
         }
-
         public async Task AddToShoppingList(List<Ingredients> ingredients)
         {
             try

@@ -14,6 +14,8 @@ namespace PalEats.ViewModels
 {
     internal class ShoppingListPageViewModel : INotifyPropertyChanged
     {
+        private readonly ShoppingListPageServices shoppingListPageServices = new ShoppingListPageServices();
+
         public ShoppingListPageViewModel(List<Ingredients> ingredients)
         {
             Ingredients = ingredients;
@@ -25,16 +27,13 @@ namespace PalEats.ViewModels
         }
         public ShoppingListPageViewModel()
         {
-            SaveCommand = new Command(async () => await SaveToShoppingCartAsync());
-            LoadIng = new Command(async () => await LoadIngredientsAsync());
+            LoadIngredientsAsync();
         }
 
         public Command SaveCommand { get; set; }
-        public Command LoadIng { get; set; }
 
         public async Task LoadIngredientsAsync()
         {
-            ShoppingListPageServices shoppingListPageServices = new ShoppingListPageServices();
             try
             {
                 Ingredients = await shoppingListPageServices.getShoppingList();
