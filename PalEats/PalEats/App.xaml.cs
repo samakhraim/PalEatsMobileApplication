@@ -27,8 +27,8 @@ namespace PalEats
         public App()
         {
             InitializeComponent();
-
-            MainPage = new NavigationPage(new SignInPage());
+            currentUser = 1;
+            MainPage = new NavigationPage(new ShoppingListPage());
         }
 
         protected override void OnStart()

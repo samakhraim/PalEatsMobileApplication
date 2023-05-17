@@ -17,28 +17,38 @@ namespace PalEats.Services
 
         public async Task<List<Ingredients>> getShoppingList()
         {
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                await connection.OpenAsync();
-                // Select all existing ingredients in shopping list for the current user
-                SqlCommand retrieveCommand = new SqlCommand("SELECT * FROM ShoppingList WHERE UserId = @UserId", connection);
-                retrieveCommand.Parameters.AddWithValue("@UserId", ((App)App.Current).currentUser);
+            List<Ingredients> shoppingList = new List<Ingredients>();
 
-                SqlDataReader reader = await retrieveCommand.ExecuteReaderAsync();
-                List<Ingredients> shoppingList = new List<Ingredients>();
-                while (await reader.ReadAsync())
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
                 {
-                    Ingredients ingredient = new Ingredients
+                    await connection.OpenAsync();
+                    // Select all existing ingredients in shopping list for the current user
+                    SqlCommand retrieveCommand = new SqlCommand("SELECT * FROM ShoppingList WHERE UserId = @UserId", connection);
+                    retrieveCommand.Parameters.AddWithValue("@UserId", ((App)App.Current).currentUser);
+
+                    SqlDataReader reader = await retrieveCommand.ExecuteReaderAsync();
+                    while (await reader.ReadAsync())
                     {
-                        Amount = Convert.ToSingle(reader["Amount"]),
-                        Id = Convert.ToInt32(reader["IngredientsId"]),
-                        Unit = reader["Unit"].ToString()
-                    };
-                    shoppingList.Add(ingredient);
+                        Ingredients ingredient = new Ingredients
+                        {
+                            Amount = Convert.ToSingle(reader["Amount"]),
+                            Id = Convert.ToInt32(reader["IngredientsId"]),
+                            Unit = reader["Unit"].ToString()
+                        };
+                        shoppingList.Add(ingredient);
+                    }
+                    reader.Close();
                 }
-                reader.Close();
-                return shoppingList;
             }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("Error fetching ingredients: " + ex.Message);
+                await Application.Current.MainPage.DisplayAlert("Error", "Failed to fetch ingredients", "OK");
+            }
+            return shoppingList;
+
         }
 
         public async Task AddToShoppingList(List<Ingredients> ingredients)
@@ -82,6 +92,7 @@ namespace PalEats.Services
                         await insertCommand.ExecuteNonQueryAsync();
                     }
                 }
+                await Application.Current.MainPage.Navigation.PopModalAsync();
             }
             catch (SqlException ex)
             {

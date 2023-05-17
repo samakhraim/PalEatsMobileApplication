@@ -23,8 +23,29 @@ namespace PalEats.ViewModels
             }
             SaveCommand = new Command(async () => await SaveToShoppingCartAsync());
         }
+        public ShoppingListPageViewModel()
+        {
+            SaveCommand = new Command(async () => await SaveToShoppingCartAsync());
+            LoadIng = new Command(async () => await LoadIngredientsAsync());
+        }
 
         public Command SaveCommand { get; set; }
+        public Command LoadIng { get; set; }
+
+        public async Task LoadIngredientsAsync()
+        {
+            ShoppingListPageServices shoppingListPageServices = new ShoppingListPageServices();
+            try
+            {
+                Ingredients = await shoppingListPageServices.getShoppingList();
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("Error Loading Ingredients: " + ex.Message);
+                await Application.Current.MainPage.DisplayAlert("Error", "Failed to LoadIngredients. Message: " + ex.Message, "OK");
+            }
+
+        }
 
         private async Task SaveToShoppingCartAsync()
         {
@@ -32,13 +53,13 @@ namespace PalEats.ViewModels
             try
             {
                 await shoppingListPageServices.AddToShoppingList(Ingredients);
+
             }
             catch (Exception ex)
             {
                 Debug.WriteLine("Error saving shopping list: " + ex.Message);
                 await Application.Current.MainPage.DisplayAlert("Error", "Failed to save shopping list. Message: " + ex.Message, "OK");
             }
-            await Application.Current.MainPage.Navigation.PopModalAsync();
             await Application.Current.MainPage.DisplayAlert("Success", "Ingredients saved!", "OK");
 
         }
@@ -51,6 +72,7 @@ namespace PalEats.ViewModels
             }
             set {; }
         }
+
         private List<Ingredients> ingredients = new List<Ingredients>();
         public List<Ingredients> Ingredients
         {
