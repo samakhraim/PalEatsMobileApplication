@@ -226,9 +226,6 @@
     <AndroidResource Include="Resources\drawable\shoppinglist.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\fav.png" />
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\drawable\search.png" />
   </ItemGroup>
   <ItemGroup>
@@ -237,7 +234,7 @@
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties XamarinHotReloadWrongLinkerErrorInfoBarPalEatsAndroidHideInfoBar="True" XamarinHotReloadDebuggerTimeoutExceptionPalEatsAndroidHideInfoBar="True" />
+      <UserProperties XamarinHotReloadDebuggerTimeoutExceptionPalEatsAndroidHideInfoBar="True" XamarinHotReloadWrongLinkerErrorInfoBarPalEatsAndroidHideInfoBar="True" />
     </VisualStudio>
   </ProjectExtensions>
 </Project>
