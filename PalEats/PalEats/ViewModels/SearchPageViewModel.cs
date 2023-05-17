@@ -1,6 +1,8 @@
 ﻿using PalEats.Models;
+using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Data.SqlClient;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -11,7 +13,6 @@ namespace PalEats.ViewModels
 {
     internal class SearchPageViewModel : INotifyPropertyChanged
     {
-
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
@@ -56,11 +57,24 @@ namespace PalEats.ViewModels
         {
             SearchResult.Clear();
 
-            var searchResults = await searchServices.Search(SearchText);
-
-            foreach (var result in searchResults)
+            try
             {
-                SearchResult.Add(result);
+                var searchResults = await searchServices.Search(SearchText);
+
+                foreach (var result in searchResults)
+                {
+                    SearchResult.Add(result);
+                }
+            }
+            catch (SqlException ex)
+            {
+                await Application.Current.MainPage.DisplayAlert("Error", "There was an error with the database connection. Please try again later.", "OK");
+                Console.WriteLine($"Error message: {ex.Message}");
+            }
+            catch (Exception ex)
+            {
+                await Application.Current.MainPage.DisplayAlert("Error", "An unexpected error occurred. Please try again later.", "OK");
+                Console.WriteLine($"Error message: {ex.Message}");
             }
         }
     }

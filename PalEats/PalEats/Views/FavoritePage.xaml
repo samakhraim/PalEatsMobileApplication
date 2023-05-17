@@ -11,7 +11,7 @@
             
             <StackLayout Padding="15" Margin="0,30,0,0">
 
-                <CollectionView ItemsSource="{Binding FavoriteDishes}" SelectionMode="Single" SelectionChanged="OnCollectionViewSelectionChanged">
+                <CollectionView ItemsSource="{Binding FavoriteDishes}" SelectionMode="Single" SelectionChanged="OnCollectionViewSelectionChanged" IsVisible="{Binding HasFav}">
                     <CollectionView.ItemsLayout>
 
                         <GridItemsLayout Orientation="Vertical" Span="2" HorizontalItemSpacing="15" VerticalItemSpacing="15"/>
@@ -35,7 +35,15 @@
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
                 </CollectionView>
-
+                <Label 
+                    Text="You Dont Have Any Favorite Dish Yet!" 
+                    FontAttributes="Bold"
+                    TextColor="{StaticResource MainTextColor}"
+                    FontSize="Header"
+                    IsVisible="{Binding HasNoFav}" 
+                    HorizontalOptions="CenterAndExpand" 
+                    VerticalOptions="CenterAndExpand" 
+                       />
             </StackLayout>
             <StackLayout  VerticalOptions="EndAndExpand">
                 <components:NavigationComponent/>

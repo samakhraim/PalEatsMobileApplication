@@ -12,8 +12,6 @@ namespace PalEats.Services
         string connectionString = "Server=tcp:paleatserver.database.windows.net,1433;Initial Catalog=PalEatsDB;Persist Security Info=False;User ID=sama;Password=S11a7m2!a000;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
         public async Task<int> InsertNewUsersAsync(SignUpModel signUpModel)
         {
-            int rowsAffected = 0;
-
             try
             {
                 using (SqlConnection connection = new SqlConnection(connectionString))
@@ -32,12 +30,14 @@ namespace PalEats.Services
                         return 0;
                     }
 
-                    // Insert the new user
-                    SqlCommand insertCommand = new SqlCommand("INSERT INTO [Users] (Email, Password) VALUES (@Email, @Password)", connection);
+                    // Insert the new user and return the new user's ID
+                    SqlCommand insertCommand = new SqlCommand("INSERT INTO [Users] (Email, Password) OUTPUT INSERTED.UserId VALUES (@Email, @Password)", connection);
                     insertCommand.Parameters.AddWithValue("@Email", signUpModel.Email);
                     insertCommand.Parameters.AddWithValue("@Password", signUpModel.Password);
 
-                    rowsAffected = await insertCommand.ExecuteNonQueryAsync();
+                    int newUserId = (int)await insertCommand.ExecuteScalarAsync();
+
+                    return newUserId;
                 }
             }
             catch (Exception ex)
@@ -46,8 +46,6 @@ namespace PalEats.Services
                 Console.WriteLine($"Error in InsertNewUsersAsync: {ex.Message}");
                 throw ex;
             }
-
-            return rowsAffected;
         }
     }
 }

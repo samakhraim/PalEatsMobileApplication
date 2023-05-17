@@ -36,7 +36,6 @@ namespace PalEats.Services
                     }
                     reader.Close();
                     connection.Close();
-                    Console.WriteLine("maya");
                 }
             }
             catch (SqlException ex)

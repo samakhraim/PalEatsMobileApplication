@@ -1,4 +1,4 @@
-﻿
+﻿using PalEats.Views;
 using PalEats.Models;
 using PalEats.ViewModels;
 using System;
@@ -20,9 +20,9 @@ namespace PalEats.Views
             InitializeComponent();
             viewModel = new RecipePageViewModel(id);
             BindingContext = viewModel;
-
+           
         }
-    
+
 
         private void ShareButton_Clicked(object sender, EventArgs e)
         {
@@ -35,7 +35,7 @@ namespace PalEats.Views
                 Ingredients = viewModel.Ingredients,
                 Preparation = viewModel.Preparation
             };
-            string ingredients = string.Join("\n", information.Ingredients.Select(i => i.Description));
+            string ingredients = string.Join("\n", information.Ingredients.Select(i => i.Amount), " ", information.Ingredients.Select(i => i.Name));
             string preparation = string.Join("\n\n", information.Preparation);
             Share.RequestAsync(new ShareTextRequest
             {
@@ -49,5 +49,25 @@ namespace PalEats.Views
 
             MessagingCenter.Unsubscribe<RecipePage, Recipe>(this, "ShareRecipe");
         }
+        private async void AddToShoppingListButtonClicked(object sender, EventArgs e)
+        {
+            var currentUser = ((App)App.Current).currentUser;
+
+            if (currentUser == 0)
+            {
+                bool answer = await App.Current.MainPage.DisplayAlert("Add To Shopping List", "You have to sign in first to add this recipe to your shopping list. Do you want to sign in?", "Yes", "No");
+                if (answer)
+                {
+                    await App.Current.MainPage.Navigation.PushAsync(new SignInPage());
+                }
+            }
+            else
+            {
+                var modal = new ShoppingListModal(viewModel.Ingredients);
+                await Navigation.PushModalAsync(modal);
+            }
+
+        }
+
     }
 }

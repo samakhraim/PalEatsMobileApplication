@@ -7,13 +7,40 @@ using Xamarin.Forms.Xaml;
 namespace PalEats.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class CategoryPage : ContentPage
+    public partial class CategoryPage : FlyoutPage
     {
         public CategoryPage()
         {
             InitializeComponent();
-            NavigationPage.SetHasBackButton(this, false);
+            NavigationPage.SetHasNavigationBar(this, false);
+            flyout.listview.ItemSelected += OnSelectedItem;
 
+        }
+        private async void OnSelectedItem(object sender, SelectedItemChangedEventArgs e)
+        {
+            var item = e.SelectedItem as FlyoutMenuItem;
+            var currentUser = ((App)App.Current).currentUser;
+            if (currentUser == 0)
+            {
+                bool answer = await App.Current.MainPage.DisplayAlert("Shopping List", "You have to sign in first", "Yes", "No");
+                if (answer)
+                {
+                    await App.Current.MainPage.Navigation.PushAsync(new SignInPage());
+                }
+            }
+            if (item != null && currentUser > 0)
+            {
+                if (item.TargetPage == typeof(SignInPage))
+                {
+                    Detail = new NavigationPage((Page)Activator.CreateInstance(item.TargetPage)) { };
+                }
+                else
+                {
+                    Detail = new NavigationPage((Page)Activator.CreateInstance(item.TargetPage));
+                }
+                flyout.listview.SelectedItem = null;
+                IsPresented = false;
+            }
         }
 
         private async void OnCollectionViewSelectionChanged(object sender, SelectionChangedEventArgs e)

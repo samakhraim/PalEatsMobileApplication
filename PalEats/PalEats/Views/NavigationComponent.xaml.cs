@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -12,39 +13,48 @@ namespace PalEats.Views
             InitializeComponent();
         }
 
-        private async void Button_Clicked(object sender, EventArgs e)
+        private async void Button_search_Clicked(object sender, EventArgs e)
         {
-
-
-            await Navigation.PushModalAsync(new NavigationPage(new SearchPage()));
-
-
-        }
-
-        private async void Button_Clicked_1(object sender, EventArgs e)
-        {
-
-            await Navigation.PushModalAsync(new NavigationPage(new CategoryPage()));
-
-
-        }
-
-        private async void Button_Clicked_2(object sender, EventArgs e)
-        {
-
-
-            if (((App)Application.Current).currentUser == 0)
+            var currentPage = Navigation.NavigationStack.LastOrDefault();
+            if (!(currentPage is SearchPage))
             {
-                bool answer = await Application.Current.MainPage.DisplayAlert("Favorite Page", "You are currently a guest. Do you want to sign in?", "Yes", "No");
-
-                if (answer)
-                {
-                    await Navigation.PushAsync(new SignInPage());
-                }
+                await Navigation.PushModalAsync(new NavigationPage(new SearchPage()));
             }
-            else
+        }
+
+
+        private async void Button_Home_Clicked(object sender, EventArgs e)
+        {
+            var currentPage = Navigation.NavigationStack.LastOrDefault();
+            if (!(currentPage is CategoryPage))
             {
-                await Navigation.PushModalAsync(new NavigationPage(new FavoritePage()));
+                var categoryPage = new CategoryPage();
+
+              
+                Navigation.InsertPageBefore(categoryPage, Navigation.NavigationStack.First());
+
+                await Navigation.PopToRootAsync();
+            }
+        }
+
+        private async void Button_favorite_Clicked(object sender, EventArgs e)
+        {
+            var currentPage = Navigation.NavigationStack.LastOrDefault();
+            if (!(currentPage is FavoritePage))
+            {
+                if (((App)Application.Current).currentUser == 0)
+                {
+                    bool answer = await Application.Current.MainPage.DisplayAlert("Favorite Page", "You are currently a guest. Do you want to sign in?", "Yes", "No");
+
+                    if (answer)
+                    {
+                        await Navigation.PushAsync(new SignInPage());
+                    }
+                }
+                else
+                {
+                    await Navigation.PushModalAsync(new NavigationPage(new FavoritePage()));
+                }
             }
         }
 

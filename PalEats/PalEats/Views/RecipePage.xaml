@@ -12,7 +12,7 @@
                 <RowDefinition Height="*" />
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
-            <ScrollView>
+            <ScrollView >
                 <StackLayout BackgroundColor="{StaticResource backgroundColor}" >
                     <Grid BackgroundColor="{StaticResource RecipeHeaderColor}">
                         <Image Source="{Binding Recipe.DishImgUrl }" Aspect="AspectFill" HeightRequest="300"/>
@@ -21,40 +21,51 @@
                         <StackLayout Orientation="Horizontal"  Spacing="30" HeightRequest="63" WidthRequest="277" Margin="50,0,50,0">
                             <StackLayout Orientation="Vertical" Spacing="5">
                                 <Image BackgroundColor="{StaticResource backgroundColor}"  Source="clock.png" Aspect="AspectFit" WidthRequest="40" HeightRequest="40"/>
-                                <Label Text="{Binding Recipe.DueTime}" FontFamily="Lato-Black" FontSize="Small" HorizontalTextAlignment="Center"/>
+                                <Label Text="{Binding Recipe.DueTime}"  FontSize="Small" HorizontalTextAlignment="Center"/>
                             </StackLayout>
                             <StackLayout Orientation="Vertical" Spacing="5">
                                 <Image BackgroundColor="{StaticResource backgroundColor}"   Source="fire.png" Aspect="AspectFit" HeightRequest="40" WidthRequest="50"/>
-                                <Label Text="{Binding Recipe.Calories}" FontFamily="Lato-Black" FontSize="Small" HorizontalTextAlignment="Center"/>
+                                <Label Text="{Binding Recipe.Calories}"  FontSize="Small" HorizontalTextAlignment="Center"/>
                             </StackLayout>
                             <StackLayout Orientation="Vertical" Spacing="5" >
                                 <ImageButton BackgroundColor="{StaticResource backgroundColor}" Command="{Binding FavoriteButtonClicked}" Source="{Binding FavoritePath}" Aspect="AspectFit" HeightRequest="40" WidthRequest="40" />
-                                <Label FontFamily="Lato-Black" Text="Favorite" FontSize="Small" HorizontalTextAlignment="Center"/>
+                                <Label  Text="Favorite" FontSize="Small" HorizontalTextAlignment="Center"/>
 
                             </StackLayout>
                             <StackLayout Orientation="Vertical" Spacing="5" >
                                 <ImageButton BackgroundColor="{StaticResource backgroundColor}" Clicked="ShareButton_Clicked"  Source="share.png" Aspect="AspectFit" WidthRequest="28.67" HeightRequest="40" />
-                                <Label Text="Share " FontFamily="Lato-Black" FontSize="Small" HorizontalTextAlignment="Center"/>
+                                <Label Text="Share " FontSize="Small" HorizontalTextAlignment="Center"/>
                             </StackLayout>
                         </StackLayout>
                         <StackLayout>
 
-                            <Label FontFamily="Lato-Black"  Text="Recipe Description:" Margin="5,15,0,0" FontSize="20" FontAttributes="Bold" TextColor="{StaticResource MainTextColor}"/>
-                            <Label FontFamily="Lato-Black" Text="{Binding Recipe.Description}" Margin="10,0,0,10"  FontSize="16" TextColor="{StaticResource MainTextColor}"/>
+                            <Label   Text="Recipe Description:" Margin="5,15,0,0" FontSize="20" FontAttributes="Bold" TextColor="{StaticResource MainTextColor}"/>
+                            <Label  Text="{Binding Recipe.Description}" Margin="10,0,0,10"  FontSize="16" TextColor="{StaticResource MainTextColor}"/>
                         </StackLayout>
                         <StackLayout>
                             <Grid >
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*" />
                                     <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
                                 </Grid.ColumnDefinitions>
-                                <Label FontSize="20" FontAttributes="Bold" Text="Ingredients:" Margin="5,0,0,0" TextColor="{StaticResource MainTextColor}" Grid.Column="0" />
-                                <Label Text="{Binding NumberOfPeople}" FontSize="16" Margin="0,0,10,0"  TextColor="{StaticResource MainTextColor}" Grid.Column="1" Grid.Row="0" HorizontalOptions="End" />
+                                <ImageButton Source="shoppingbasket.png" BackgroundColor="{StaticResource backgroundColor}" VerticalOptions="Start" Aspect="AspectFit" HeightRequest="40" Grid.Column="0"  Clicked="AddToShoppingListButtonClicked" />
+                                <Label FontSize="20" FontAttributes="Bold" Text="Ingredients:" Margin="10,10,0,0" TextColor="{StaticResource MainTextColor}" Grid.Column="1" />
+                                <Label Text="{Binding NumberOfPeople}" FontSize="16" Margin="0,10,10,0" TextColor="{StaticResource MainTextColor}" Grid.Column="1" Grid.Row="0" HorizontalOptions="End" />
                             </Grid>
+
                             <CollectionView ItemsSource="{Binding Ingredients}"  HeightRequest="{Binding IngredientsHeight}"  Margin="10,0,0,0">
                                 <CollectionView.ItemTemplate>
                                     <DataTemplate>
-                                        <Label Text="{Binding Description}" Margin="0,0,0,5" TextColor="{StaticResource MainTextColor}" FontSize="16"  />
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                            </Grid.ColumnDefinitions>
+                                            <Label Grid.Column="0" Text="{Binding Amount}" Margin="0,0,0,5" TextColor="{StaticResource MainTextColor}" FontSize="16"  />
+                                            <Label Grid.Column="1" Text="{Binding Unit}" Margin="0,0,0,5" TextColor="{StaticResource MainTextColor}" FontSize="16"  />
+                                            <Label Grid.Column="2" Text="{Binding Name}" Margin="0,0,0,5" TextColor="{StaticResource MainTextColor}" FontSize="16"  />
+                                        </Grid>
                                     </DataTemplate>
                                 </CollectionView.ItemTemplate>
                             </CollectionView>
