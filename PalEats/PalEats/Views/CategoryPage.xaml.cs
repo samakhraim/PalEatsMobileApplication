@@ -14,12 +14,21 @@ namespace PalEats.Views
             InitializeComponent();
             NavigationPage.SetHasNavigationBar(this, false);
             flyout.listview.ItemSelected += OnSelectedItem;
-           
+
         }
-        private void OnSelectedItem(object sender, SelectedItemChangedEventArgs e)
+        private async void OnSelectedItem(object sender, SelectedItemChangedEventArgs e)
         {
             var item = e.SelectedItem as FlyoutMenuItem;
-            if (item != null)
+            var currentUser = ((App)App.Current).currentUser;
+            if (currentUser == 0)
+            {
+                bool answer = await App.Current.MainPage.DisplayAlert("Shopping List", "You have to sign in first", "Yes", "No");
+                if (answer)
+                {
+                    await App.Current.MainPage.Navigation.PushAsync(new SignInPage());
+                }
+            }
+            if (item != null && currentUser > 0)
             {
                 if (item.TargetPage == typeof(SignInPage))
                 {

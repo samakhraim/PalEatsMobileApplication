@@ -22,6 +22,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Views\ShoppingListPage.xaml.cs">
+      <DependentUpon>ShoppingListPage.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\ShoppingListModal.xaml.cs">
       <DependentUpon>ShoppingListModal.xaml</DependentUpon>
     </Compile>
@@ -39,6 +42,9 @@
     </EmbeddedResource>
     <EmbeddedResource Update="Views\FlyoutMenuPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\ShoppingListPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\NavigationComponent.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>

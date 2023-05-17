@@ -27,7 +27,6 @@ namespace PalEats
         public App()
         {
             InitializeComponent();
-
             MainPage = new NavigationPage(new SignInPage());
         }
 

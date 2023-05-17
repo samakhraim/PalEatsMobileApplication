@@ -15,7 +15,7 @@
         <ListView x:Name="listview" x:FieldModifier="Public">
             <ListView.ItemsSource>
                 <x:Array Type="{x:Type m:FlyoutMenuItem}">
-                    <m:FlyoutMenuItem Title="Shopping List" IconSource="shoppinglist.png" TargetPage="{x:Type local:SignInPage}"/>
+                    <m:FlyoutMenuItem Title="Shopping List" IconSource="shoppinglist.png" TargetPage="{x:Type local:ShoppingListPage}"/>
                     <m:FlyoutMenuItem Title="Log Out" IconSource="logout.png" TargetPage="{x:Type local:SignInPage}"/>
                 </x:Array>
             </ListView.ItemsSource>
