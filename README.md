@@ -1,4 +1,3 @@
-Certainly! Here's an updated version of your README file with information about the Xamarin.Forms application using Azure SQL Server:
 
 ---
 
