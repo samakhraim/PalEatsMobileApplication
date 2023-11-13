@@ -35,6 +35,7 @@ Cooking Palestinian dishes can be challenging due to the many variations and sca
 - **Logout:** Sign out when you're finished using the app.
 
 ---
-##FigmaDesign 
+## FigmaDesign 
+
 ![image](https://github.com/samakhraim/PalEatsMobileApplication/assets/62477773/b195721b-5fc9-4f4d-9316-98aa77d91470)
 
