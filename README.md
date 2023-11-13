@@ -32,6 +32,7 @@ Cooking Palestinian dishes can be challenging due to the many variations and sca
 - **Recipe Description:** Clear and concise descriptions with nutritional information, cooking time, step-by-step instructions, and recipe photos.
 - **Continue as a Guest:** Explore app content without creating an account.
 - **Search :** Search recipies by name  .
+- **Shopping List:** User can add recipies ingredients to shopping list .
 - **Logout:** Sign out when you're finished using the app.
 
 ---
